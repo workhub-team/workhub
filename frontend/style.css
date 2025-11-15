@@ -1,0 +1,513 @@
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+
+header {
+    background-color: #003366;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+}
+
+header .logo img {
+    height: 60px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #66b3ff;
+}
+
+
+.hero {
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.hero .overlay {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+
+.btn {
+    background-color: #003366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: #0055a5;
+}
+
+
+.section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+
+#sobre {
+    background-color: #f8f8f8;
+    color: #003366;
+    padding: 60px 40px;
+}
+
+#salas {
+    background-color: #003366;
+    color: white;
+}
+
+.salas-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sala {
+    background-color: white;
+    color: #003366;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.img-placeholder {
+    background-color: #ccc;
+    height: 150px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+
+#planos {
+    position: relative;
+    background-image: url('img/img_01_workHub.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+
+#planos .overlay {
+    background: rgba(156, 150, 150, 0.6);
+    padding: 60px 20px;
+    border-radius: 5px;
+}
+
+.planos-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.plano {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    transition: 0.3s;
+}
+
+.plano:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    background-color: #f0f0f0;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+
+footer {
+    background-color: rgb(224, 222, 222);
+    color:#003366;
+    text-align: center;
+    padding: 15px 0;
+}
+#reserva{
+    background-color:#003366;
+}
+h1 {
+  color: white;
+}
+
+.hero {
+    height: 90vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.capa {
+    color: white;
+    padding: 60px;
+    border-radius: 15px;
+}
+
+.capa h1 {
+    font-size: 4em; 
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+}
+
+.capa p {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+}
+
+.capa .btn {
+    background-color: #00aaff;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.capa .btn:hover {
+    background-color: #0088cc;
+}
+
+.capa .btn:hover {
+    background-color: #0055a5;
+}
+.salas-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 15px;
+    flex-wrap: nowrap; 
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sala {
+    background-color: white;
+    color: #003366;
+    border-radius: 10px;
+    padding: 15px;
+    width: 22%; 
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.sala:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.img-sala {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: block;
+}
+#planos {
+    background-image: url('img/img_01_workHub.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 80px 0;
+}
+
+#planos .overlay {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 60px 0;
+}
+
+.planos-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: nowrap; 
+    overflow: hidden;
+}
+
+.plano {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 25px;
+    width: 22%; 
+    min-width: 250px;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.plano:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.plano h3 {
+    margin-bottom: 10px;
+}
+
+.plano ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.plano ul li {
+    margin: 6px 0;
+    font-weight: 500;
+}
+
+.plano .btn {
+    background-color: #00aaff;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.plano .btn:hover {
+    background-color: #0088cc;
+}
+
+#planos .overlay {
+    max-width: 1100px;     
+    margin: 0 auto;        
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding: 40px;        
+}
+
+#reserva {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+
+.form-container > div {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+#btn-entrar,
+#btn-criar-view {
+    background-color: #00aaff;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#btn-entrar:hover,
+#btn-criar-view:hover {
+    background-color: #0088cc;
+}
+
+#aviso {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffdddd;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+}
+
+#reserva {
+  background-color: #001f3f;
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  box-sizing: border-box;
+}
+
+#reserva h2 {
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+#reserva .form-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 30px 35px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+#reserva .form-container > * {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#reserva .form-container > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+#reserva .form-container > div button {
+  flex: 1;
+  background-color: #00aaff;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#reserva .form-container > div button:hover {
+  background-color: #0088cc;
+}
+
+#reserva #aviso {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffdddd;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+
+#reserva form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+#reserva input,
+#reserva select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+#reserva button.btn {
+  width: 100%;
+  background: linear-gradient(90deg, #00aaff, #0077cc);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+#reserva button.btn:hover {
+  transform: scale(1.03);
+  background: linear-gradient(90deg, #0099dd, #005fa3);
+}
+
+#reserva .form-container form h3 {
+  text-align: center !important;
+  color:#001f3f85 !important;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
