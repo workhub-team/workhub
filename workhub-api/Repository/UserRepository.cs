@@ -21,6 +21,7 @@ public class UserRepository : IUserRepository
     {
         var user = new User
         {
+            Id = Guid.NewGuid().ToString(),
             CompleteName = newUser.Username,
             Email = newUser.Email,
             Password = newUser.Password,
