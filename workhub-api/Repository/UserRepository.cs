@@ -25,6 +25,7 @@ public class UserRepository : IUserRepository
             CompleteName = newUser.Username,
             Email = newUser.Email,
             Password = newUser.Password,
+            Role = "user",
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
         };
