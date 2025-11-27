@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using workhub_api.Services;
@@ -25,6 +26,13 @@ namespace workhub_api.Controllers
         {
             return _authService.RegisterUser(request);
             // return StatusCode(200, "Ok");
+        }
+
+        [Authorize]
+        [HttpGet("teste")]
+        public IActionResult Teste()
+        {
+            return StatusCode(200, "Ok, autorizado");
         }
     }    
 }
