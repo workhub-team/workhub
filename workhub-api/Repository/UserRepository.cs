@@ -14,7 +14,7 @@ public class UserRepository : IUserRepository
 
     public bool CheckIfExistsByEmail(string email)
     {    
-        return _context.Users.Any(u => u.Email == email);
+        return _context.Users.Any(u => u.Email == email && u.DeletedAt == null);
     }
 
     public string RegisterNewUser(RegisterRequestDto newUser)
