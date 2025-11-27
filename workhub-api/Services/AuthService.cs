@@ -1,15 +1,21 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Reflection.Metadata.Ecma335;
+using System.Security.Claims;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace workhub_api.Services
 {
     public class AuthService : IAuthService 
     {
         private readonly IUserRepository _userRepository;
+        private readonly IConfiguration _configuration;
 
-        public AuthService(IUserRepository userRepository)
+        public AuthService(IUserRepository userRepository, IConfiguration configuration)
         {
             _userRepository = userRepository;    
+            _configuration = configuration;
         }
 
         public IActionResult RegisterUser (RegisterRequestDto userData)
@@ -51,10 +57,38 @@ namespace workhub_api.Services
             }
 
             //caso contrário, gerar jwt token
-
-            string jwtToken = _userRepository.GenerateJwtToken(userData); 
+            string jwtToken = GenerateJwtToken(userData);
 
             return new ObjectResult(jwtToken) { StatusCode = 200 };;
+        }
+
+        public string GenerateJwtToken(LoginRequestDto user)
+        {   
+            //get user by email
+            // User foundUser = _context.Users.FirstOrDefault(u => u.Email == user.Email);
+            User foundUser = _userRepository.GetUserByEmail(user.Email);
+            
+            // Claims fofinhas UwU
+            var claims = new[] {
+                new Claim(ClaimTypes.Email, foundUser.Email),
+                new Claim(ClaimTypes.Name, foundUser.CompleteName),
+                new Claim(ClaimTypes.Role, foundUser.Role)
+            };
+
+            // Chave secreta peludinha
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            // Criando o token UwU
+            var token = new JwtSecurityToken(
+                issuer: _configuration["Jwt:Issuer"],
+                audience: _configuration["Jwt:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(30), // Sessão dura 30 min OwO
+                signingCredentials: creds
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

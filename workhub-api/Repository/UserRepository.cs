@@ -27,7 +27,8 @@ public class UserRepository : IUserRepository
             Password = newUser.Password,
             Role = "user",
             CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
+            UpdatedAt = DateTime.UtcNow,
+            DeletedAt = null
         };
 
         _context.Users.Add(user);
@@ -41,33 +42,9 @@ public class UserRepository : IUserRepository
         return _context.Users.Any(u => u.Email == user.Email && u.Password == user.Password);
     }
 
-    public string GenerateJwtToken(LoginRequestDto user)
+    public User GetUserByEmail(string email)
     {
-        //get user by email
-        User foundUser = _context.Users.FirstOrDefault(u => u.Email == user.Email);
-        
-        // Claims fofinhas UwU
-        var claims = new[] {
-            new Claim(ClaimTypes.Email, foundUser.Email),
-            new Claim(ClaimTypes.Name, foundUser.CompleteName),
-            new Claim(ClaimTypes.Role, foundUser.Role)
-        };
-
-        // Chave secreta peludinha
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("segredo-super-fofinho"));
-        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-        // Criando o token UwU
-        var token = new JwtSecurityToken(
-            issuer: "workhub.com.br",
-            audience: "workhub.com.br",
-            claims: claims,
-            expires: DateTime.Now.AddMinutes(30), // Sessão dura 30 min OwO
-            signingCredentials: creds
-        );
-
-        return new JwtSecurityTokenHandler().WriteToken(token);
-
-
+        User foundUser = _context.Users.FirstOrDefault(u => u.Email == email);
+        return foundUser;
     }
 }
