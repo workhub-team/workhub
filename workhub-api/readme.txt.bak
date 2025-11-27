@@ -1,4 +1,4 @@
-tabela unidade======
+tabela local======
 id: guid
 nome: string
 endereço: string
@@ -15,7 +15,7 @@ createdAt: datetime
 updatedAt: datetime
 deletedAt: datetime
 
-tabela reserva========
+tabela locaçoes========
 id: guid
 fk_sala_id: guid
 fk_user_id: guid

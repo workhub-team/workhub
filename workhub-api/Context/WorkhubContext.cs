@@ -7,7 +7,7 @@ public class WorkHubContext : DbContext
     }
 
     public DbSet<User> Users { get; set; }
-    public DbSet<Local> Locals { get; set; }
+    public DbSet<Unity> Unities { get; set; }
     public DbSet<Room> Rooms { get; set; }
-    public DbSet<Allocation> Allocations { get; set; }
+    public DbSet<Reserve> Reserves { get; set; }
 }

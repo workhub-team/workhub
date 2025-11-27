@@ -1,4 +1,4 @@
-public class Local
+public class Unity
 {
     public string Id {get; set;}
     public string Name { get; set;}
