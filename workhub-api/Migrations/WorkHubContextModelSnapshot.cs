@@ -70,9 +70,12 @@ namespace workhub_api.Migrations
                     b.Property<bool>("IsShared")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("Seats")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("Seats")
+                        .HasColumnType("int");
 
                     b.Property<string>("UnityId")
                         .IsRequired()

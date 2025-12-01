@@ -1,8 +1,9 @@
+using Microsoft.AspNetCore.Mvc;
+
 public interface IRoomService
 {
-    public Room GetRoomById(string id);
-    public List<Room> GetAllRooms();
-    public Room CreateRoom(Room room);
-    public Room UpdateRoom(Room room);
-    public void DeleteRoom(string id);
+    public DynamicResponse GetAllRoomsByUnityId(string unityId);
+    public IActionResult CreateRoom(RoomDto roomDto);
+    public DynamicResponse UpdateRoom(RoomDto roomDto);
+    public IActionResult DeleteRoom(string id);
 }
