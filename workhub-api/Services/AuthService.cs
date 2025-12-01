@@ -70,9 +70,9 @@ namespace workhub_api.Services
             
             // Claims fofinhas UwU
             var claims = new[] {
-                new Claim(ClaimTypes.Email, foundUser.Email),
-                new Claim(ClaimTypes.Name, foundUser.CompleteName),
-                new Claim(ClaimTypes.Role, foundUser.Role)
+                new Claim("email", foundUser.Email),
+                new Claim("name", foundUser.CompleteName),
+                new Claim("role", foundUser.Role)
             };
 
             // Chave secreta peludinha
