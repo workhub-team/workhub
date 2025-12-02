@@ -11,24 +11,29 @@ public class UnityRepository : IUnityRepository
 
     public Unity GetUnityById(string id)
     {
-        return _context.Unities.Find(id);
+        return _context.Unities.FirstOrDefault(u => u.Id == id && u.DeletedAt == null);
     }
 
     public Unity GetUnityByName(string name)
     {
-        Unity foundUnity = _context.Unities.FirstOrDefault(u => u.Name == name);
+        Unity foundUnity = _context.Unities.FirstOrDefault(u => u.Name == name && u.DeletedAt == null);
         return foundUnity;
     }
 
     public List<Unity> GetAllUnities()
     {
-        return _context.Unities.ToList();
+        return _context.Unities.Where(u => u.DeletedAt == null).ToList();
     }
 
     public string CreateUnity(UnityDto unityDto)
     {
-        bool UnityExists = _context.Unities.Any(u => u.Name == unityDto.Name);
+        bool UnityExists = _context.Unities.Any(u => u.Name == unityDto.Name && u.DeletedAt == null);
 
+        if (UnityExists)
+        {
+            throw new Exception("Unity with the same name already exists");
+        } 
+        
         Unity unity = new Unity
         {
             Id = Guid.NewGuid().ToString(),
@@ -44,7 +49,7 @@ public class UnityRepository : IUnityRepository
 
     public Unity UpdateUnity(UnityDto unityDto)
     {
-        var existingUnity = _context.Unities.Find(unityDto.Id);
+        var existingUnity = _context.Unities.FirstOrDefault(u => u.Id == unityDto.Id && u.DeletedAt == null);
         if (existingUnity == null)
         {
             throw new Exception("Unity not found");
@@ -60,7 +65,7 @@ public class UnityRepository : IUnityRepository
 
     public void DeleteUnity(string id)
     {
-        var unity = _context.Unities.Find(id);
+        var unity = _context.Unities.FirstOrDefault(u => u.Id == id && u.DeletedAt == null);
         if (unity == null)
         {
             throw new Exception("Unity not found");

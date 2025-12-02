@@ -11,23 +11,27 @@ public class RoomRepository : IRoomRepository
 
     public Room GetRoomById(string id)
     {
-        return _context.Rooms.Find(id);
+        return _context.Rooms.FirstOrDefault(u => u.Id == id && u.DeletedAt == null);
     }
 
     public Room GetRoomByName(string name)
     {
-        Room foundRoom = _context.Rooms.FirstOrDefault(u => u.Name == name);
+        Room foundRoom = _context.Rooms.FirstOrDefault(u => u.Name == name && u.DeletedAt == null);
         return foundRoom;
     }
 
-    public List<Room> GetAllRooms()
+    public List<Room> GetAllRoomsByUnityId(string unityId)
     {
-        return _context.Rooms.ToList();
+        return _context.Rooms.Where(r => r.UnityId == unityId && r.DeletedAt == null).ToList();
     }
 
     public string CreateRoom(RoomDto roomDto)
     {
         bool RoomExists = _context.Rooms.Any(u => u.Name == roomDto.Name);
+        if (RoomExists)
+        {
+            throw new Exception("Room with the same name already exists");
+        }
 
         Room room = new Room
         {
@@ -46,7 +50,7 @@ public class RoomRepository : IRoomRepository
 
     public Room UpdateRoom(RoomDto roomDto)
     {
-        var existingRoom = _context.Rooms.Find(roomDto.RoomId);
+        var existingRoom = _context.Rooms.FirstOrDefault(u => u.Id == roomDto.RoomId && u.DeletedAt == null);
         if (existingRoom == null)
         {
             throw new Exception("Room not found");
@@ -63,7 +67,7 @@ public class RoomRepository : IRoomRepository
 
     public void DeleteRoom(string id)
     {
-        var room = _context.Rooms.Find(id);
+        var room = _context.Rooms.FirstOrDefault(u => u.Id == id && u.DeletedAt == null);
         if (room == null)
         {
             throw new Exception("Room not found");

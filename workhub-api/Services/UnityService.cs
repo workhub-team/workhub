@@ -5,11 +5,9 @@ public class UnityService : IUnityService
 {
 
     private readonly IUnityRepository _unityRepository;
-    private readonly WorkHubContext _context;
 
-    public UnityService(IUnityRepository unityRepository, WorkHubContext context)
+    public UnityService(IUnityRepository unityRepository)
     {
-        _context = context;
         _unityRepository = unityRepository;
     }
 
