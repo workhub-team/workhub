@@ -58,8 +58,16 @@ namespace workhub_api.Services
 
             //caso contrário, gerar jwt token
             string jwtToken = GenerateJwtToken(userData);
+            User foundUser = _userRepository.GetUserByEmail(userData.Email);
+            LoginResponseDto responseDto = new LoginResponseDto
+            {
+                JwtToken = jwtToken,
+                UserId = foundUser.Id,
+                UserName = foundUser.CompleteName,
+                UserRole = foundUser.Role
+            };
 
-            return new ObjectResult(jwtToken) { StatusCode = 200 };;
+            return new ObjectResult(responseDto) { StatusCode = 200 };;
         }
 
         public string GenerateJwtToken(LoginRequestDto user)
