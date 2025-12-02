@@ -6,6 +6,16 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Adiciona política de CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PermitirTudo", policy =>
+    {
+        policy.AllowAnyOrigin()   // Permite qualquer origem
+              .AllowAnyMethod()   // Permite qualquer método (GET, POST, etc.)
+              .AllowAnyHeader();  // Permite qualquer header
+    });
+});
 
 // Adiciona autenticação JWT
 builder.Services.AddAuthentication("Bearer")
@@ -74,7 +84,12 @@ builder.Services.AddSwaggerGen( c =>
     });
 });
 
+
+
 var app = builder.Build();
+
+// Usa CORS antes dos endpoints
+app.UseCors("PermitirTudo");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
