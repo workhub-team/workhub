@@ -40,7 +40,7 @@ public class RoomService : IRoomService
         // return new ObjectResult(unityId) { StatusCode = 200 };
         return new DynamicResponse
         {
-            Message = "Sala criada com sucesso.",
+            Message = "Sala atualizada com sucesso.",
             StatusCode = 200,
             Data = new List<dynamic> { updatedRoom }
         };

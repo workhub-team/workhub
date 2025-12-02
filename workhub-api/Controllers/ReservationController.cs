@@ -5,44 +5,45 @@ using workhub_api.Services;
 
 namespace workhub_api.Controllers
 {
-    // [ApiController]
-    // [Route("room")]
-    // public class ReservationController : ControllerBase
-    // {
-    //     private readonly IReservationService _reservationService;
+    [ApiController]
+    [Route("reserve")]
+    public class ReservationController : ControllerBase
+    {
+        private readonly IReserveService _reserveService;
 
-    //     public ReservationController (IReservationService _reservationService)
-    //     {
-    //         _roomService = roomService;
-    //     }
+        public ReservationController (IReserveService reserveService)
+        {
+            _reserveService = reserveService;
+        }
 
-    //     [HttpPost("create")]
-    //     [Authorize(Roles = "admin")]
-    //     public IActionResult CreateRoom([FromBody] RoomDto request)
-    //     {
-    //         return _roomService.CreateRoom(request);
-    //     }
+        [HttpPost("create")]
+        [Authorize]
+        public IActionResult CreateReserve([FromBody] ReserveDto request)
+        {
+            return _reserveService.CreateReserve(request);
+        }
 
-    //     [HttpPost("update")]
-    //     [Authorize(Roles = "admin")]
-    //     public IActionResult UpdateRoom([FromBody] RoomDto request)
-    //     {
-    //         var result = _roomService.UpdateRoom(request);
-    //         return StatusCode(result.StatusCode , result);
-    //     }
+        [HttpPost("update")]
+        [Authorize(Roles = "admin")]
+        public IActionResult UpdateReserve([FromBody] ReserveDto request)
+        {
+            var result = _reserveService.UpdateReserve(request);
+            return StatusCode(result.StatusCode , result);
+        }
 
-    //     [HttpDelete("delete/{id}")]
-    //     [Authorize(Roles = "admin")]
-    //     public IActionResult DeleteRoom([FromRoute] string id)
-    //     {
-    //         return StatusCode(200, _roomService.DeleteRoom(id));
-    //     }
+        [HttpDelete("delete/{id}")]
+        [Authorize(Roles = "admin")]
+        public IActionResult DeleteRoom([FromRoute] string id)
+        {
+            return StatusCode(200, _reserveService.DeleteReserve(id));
+        }
 
-    //     [HttpGet("list")]
-    //     public IActionResult GetAllRoomsByUnity(string unityId)
-    //     {
-    //         DynamicResponse unities = _roomService.GetAllRoomsByUnityId(unityId);
-    //         return Ok(unities);
-    //     }
-    // }    
+        [HttpGet("list/{userId}")]
+        [Authorize]
+        public IActionResult GetAllRoomsByUnity([FromRoute] string userId)
+        {
+            DynamicResponse reserves = _reserveService.GetAllReservesByUserId(userId);
+            return Ok(reserves);
+        }
+    }    
 }

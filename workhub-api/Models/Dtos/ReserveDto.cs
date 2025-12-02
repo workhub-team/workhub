@@ -15,7 +15,7 @@ public class ReserveDto
     public DateTime ReservedDay { get; set; }
 
     [JsonPropertyName("reserved_period")]
-    public string reservedPeriod { get; set; }
+    public string ReservedPeriod { get; set; }
 
     [JsonPropertyName("entry_code")]
     public string? EntryCode { get; set; }

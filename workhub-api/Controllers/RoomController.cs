@@ -39,6 +39,7 @@ namespace workhub_api.Controllers
         }
 
         [HttpGet("list")]
+        [Authorize]
         public IActionResult GetAllRoomsByUnity(string unityId)
         {
             DynamicResponse unities = _roomService.GetAllRoomsByUnityId(unityId);
