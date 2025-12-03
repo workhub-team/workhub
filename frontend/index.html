@@ -180,16 +180,45 @@
     </div>
 </section>
 
+<!-- Modal de Reserva -->
+<div id="modal-reserva">
+    <div id="modal-square">
+        <form>
+            <h1 id="modal-h1">Reservar Sala</h1>
+
+            <label for="input-unidade">Unidade:</label>
+            <select type="select" id="input-unidade" required>
+
+            <label for="input-sala">Sala:</label>
+            <select type="select" id="input-sala" required>
+
+            <label for="input-data">Data:</label>
+            <input type="date" id="input-data" required>
+
+            <label for="input-hora">Turno:</label>
+            <select type="select" id="input-hora" required>
+                <option value="manha">Manhã (8h - 12h)</option>
+                <option value="tarde">Tarde (13h - 17h)</option>
+                <option value="dia">Dia Inteiro (8h - 17h)</option>
+            </select>
+
+            <button type="button" id="verificar-disponibilidade">Verificar disponibilidade</button>
+            
+            <button type="button" id="confirmar-reserva" disabled>Confirmar reserva</button>
+        </form>
+    </div>
+</div>
+
 <script src="main.js" crossorigin="anonymous"></script>
 <script>
 /* Lógica simples (simulada) - sem backend */
 (function(){
-  let logged = false;
+//   let logged = false;
 
   const formCriar = document.getElementById('form-criar');
   const formEntrar = document.getElementById('form-entrar');
-  const areaAgendamento = document.getElementById('area-agendamento');
-  const aviso = document.getElementById('aviso');
+//   const areaAgendamento = document.getElementById('area-agendamento');
+//   const aviso = document.getElementById('aviso');
 
   // abas
   document.getElementById('btn-entrar').addEventListener('click', function(){
@@ -202,22 +231,22 @@
   });
 
   // criar conta
-  document.getElementById('btn-criar').addEventListener('click', function(){
-    const nome = document.getElementById('nome').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const senha = document.getElementById('senha').value.trim();
-    if(!nome || !email || !senha){
-      alert('Por favor preencha todos os campos para criar a conta.');
-      return;
-    }
-    // simula criação e login
-    logged = true;
-    alert('Conta criada com sucesso! Você está logado.');
-    aviso.style.display = 'none';
-    formCriar.style.display = 'none';
-    formEntrar.style.display = 'none';
-    areaAgendamento.style.display = 'block';
-  });
+//   document.getElementById('btn-criar').addEventListener('click', function(){
+//     const nome = document.getElementById('nome').value.trim();
+//     const email = document.getElementById('email').value.trim();
+//     const senha = document.getElementById('senha').value.trim();
+//     if(!nome || !email || !senha){
+//       alert('Por favor preencha todos os campos para criar a conta.');
+//       return;
+//     }
+//     // simula criação e login
+//     logged = true;
+//     alert('Conta criada com sucesso! Você está logado.');
+//     aviso.style.display = 'none';
+//     formCriar.style.display = 'none';
+//     formEntrar.style.display = 'none';
+//     areaAgendamento.style.display = 'block';
+//   });
 
   // login
 //   document.getElementById('btn-login').addEventListener('click', function(){
@@ -237,25 +266,25 @@
 //   });
 
   // submissão da reserva (simulada)
-  document.getElementById('area-agendamento').addEventListener('submit', function(e){
-    e.preventDefault();
-    if(!logged){
-      alert('Você precisa estar logado para reservar.');
-      return;
-    }
-    const sala = document.getElementById('sala-select').value;
-    const data = document.getElementById('data-agenda').value;
-    const hora = document.getElementById('hora-agenda').value;
-    if(!sala || !data || !hora){
-      alert('Preencha todos os campos de agendamento.');
-      return;
-    }
-    alert('✅ Reserva efetuada: ' + sala + ' — ' + data + ' às ' + hora);
-    // opcional: limpar campos
-    document.getElementById('sala-select').value = '';
-    document.getElementById('data-agenda').value = '';
-    document.getElementById('hora-agenda').value = '';
-  });
+//   document.getElementById('area-agendamento').addEventListener('submit', function(e){
+//     e.preventDefault();
+//     if(!logged){
+//       alert('Você precisa estar logado para reservar.');
+//       return;
+//     }
+//     const sala = document.getElementById('sala-select').value;
+//     const data = document.getElementById('data-agenda').value;
+//     const hora = document.getElementById('hora-agenda').value;
+//     if(!sala || !data || !hora){
+//       alert('Preencha todos os campos de agendamento.');
+//       return;
+//     }
+//     alert('✅ Reserva efetuada: ' + sala + ' — ' + data + ' às ' + hora);
+//     // opcional: limpar campos
+//     document.getElementById('sala-select').value = '';
+//     document.getElementById('data-agenda').value = '';
+//     document.getElementById('hora-agenda').value = '';
+//   });
 })();
 </script>
 
