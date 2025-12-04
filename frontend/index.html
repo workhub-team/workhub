@@ -12,15 +12,29 @@
     <body>
         <!-- Cabeçalho -->
         <header>
-            <div class="logo">
-                <img src="img/logo_workHub.png" class="logo">
-            </div>
+            <a href="index.html">
+                <div class="logo">
+                    <img src="img/logo_workHub.png" class="logo">
+                </div>
+            </a>
             <nav>
                 <ul>
-                    <li><a href="#home">Home</a></li>
                     <li><a href="#salas">Salas</a></li>
                     <li><a href="#planos">Planos</a></li>
                     <li><a href="#reserva">Reserve uma Sala</a></li>
+                    <li><a id="minhas-reservas" href="minhas-reservas.html">Minhas Reservas</a></li>
+                    <li>
+                        <a id="sair">
+                            Sair
+                            <img src="img/exit.svg">
+                        </a>
+                    </li>
+                    <li id="entrar">
+                        <a onclick="irParaLogin2()" id="entrar">
+                            Entrar
+                            <img src="img/enter.svg">
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -91,7 +105,7 @@
                             <li>R$ 180 / meia diária</li>
                             <li>R$ 300 / diária</li>
                         </ul>
-                        <a href="#reserva" class="btn btn-abrirmodal">Agendar</a>
+                        <a class="btn btn-abrirmodal">Agendar</a>
                     </div>
 
                     <div class="plano">
@@ -102,7 +116,7 @@
                             <li>R$ 220 / meia diária</li>
                             <li>R$ 380 / diária</li>
                         </ul>
-                        <a href="#reserva" class="btn btn-abrirmodal">Agendar</a>
+                        <a class="btn btn-abrirmodal">Agendar</a>
                     </div>
 
                     <div class="plano">
@@ -113,7 +127,7 @@
                             <li>R$ 350 / meia diária</li>
                             <li>R$ 600 / diária</li>
                         </ul>
-                        <a href="#reserva" class="btn btn-abrirmodal">Agendar</a>
+                        <a class="btn btn-abrirmodal">Agendar</a>
                     </div>
 
                     <div class="plano">
@@ -124,7 +138,7 @@
                             <li>R$ 80 / diária</li>
                             <li>R$ 500 / mensal</li>
                         </ul>
-                        <a href="#reserva" class="btn btn-abrirmodal">Reservar</a>
+                        <a class="btn btn-abrirmodal">Reservar</a>
                     </div>
 
                 </div>
@@ -133,7 +147,7 @@
 
         <!-- Seção Reserva (substituir a antiga) -->
         <section id="reserva" class="section">
-            <h1>Reserve sua Sala</h1>
+            <h1>Faça Login</h1>
 
             <div class="form-container">
                 <!-- abas rápidas -->
@@ -176,6 +190,7 @@
                     <input type="time" id="hora-agenda" required>
                     <button type="submit" class="btn" id="btn-agendar">Agendar</button>
                 </form>
+                <p id="nao-encontrado" class="alerta">O usuário não foi encontrado, verifique se o usuário e/ou senha estão corretos.</p>
             </div>
         </section>
 

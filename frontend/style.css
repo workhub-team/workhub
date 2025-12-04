@@ -23,6 +23,8 @@ nav ul {
     list-style: none;
     display: flex;
     gap: 25px;
+    /* height: 30px; */
+    align-items: center;
 }
 
 nav a {
@@ -394,6 +396,7 @@ h1 {
     font-weight: 600;
     text-align: center;
     width: 100%;
+    display: none;
 }
 
 #reserva {
@@ -686,4 +689,55 @@ input[type="radio"] {
 .aviso-positivo p{
     padding: 0px;
     margin: 0;
+}
+
+.btn-abrirmodal:hover {
+    cursor: pointer;
+}
+
+#aviso {
+    display: none;
+}
+
+#sair {
+    background-color: rgb(151, 25, 25);
+    padding: 5px 12px;
+    border-radius: 5px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex; 
+    gap: 10px;
+    display: none;
+}
+
+#sair:hover {
+    cursor: pointer;
+    color: white;
+}
+
+#entrar {
+    background-color: rgb(37, 155, 170);
+    padding: 5px 5px;
+    border-radius: 5px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex; 
+    gap: 5px;
+}
+
+#entrar:hover {
+    cursor: pointer;
+    color: white;
+}
+
+#nao-encontrado {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffdddd;
+    border-radius: 6px;
+    padding: 8px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    display: none;
+    margin: 12px 0px 0px 0px;
 }

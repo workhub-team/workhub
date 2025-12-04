@@ -15,14 +15,43 @@ inputData.setAttribute("max", limiteFormatado);
 //abrir modal
 document.querySelectorAll('.btn-abrirmodal').forEach(botao => {
     botao.addEventListener('click', () => {
-        const modal = document.getElementById('modal-reserva');
-        modal.style.display = "flex";
+        //checar se o usuario ta logado
+        const token = localStorage.getItem("token");
+        if (token) {
+            if (tokenValidate(token)) {
+                console.log("User is logged in.");
+                const modal = document.getElementById('modal-reserva');
+                modal.style.display = "flex";
 
-        //get de informações 
-        getUnities();
+                //get de informações 
+                getUnities();
+            }
+            else {
+                localStorage.removeItem("token");
+                console.log("Token is old. User is not logged in.");
+                cleanUserData();
+                irParaLogin();
+            }
+        }
+        else {
+            console.log("User is not logged in.");
+            cleanUserData();
+            irParaLogin();
+        }
+
+        
     });
 });
 
+function irParaLogin() {
+    //mostrar alerta 
+    const alertaElement = document.getElementById("aviso");
+    alertaElement.style.display = "block"
+    document.getElementById("reserva").scrollIntoView({
+      behavior: "smooth", // rolagem suave
+      block: "start"      // alinha no topo da tela
+    });
+}
 
 //fechar modal
 document.getElementById('modal-close').addEventListener('click', () => {

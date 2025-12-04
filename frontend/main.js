@@ -7,6 +7,7 @@ function checkToken(){
     if (token) {
         if (tokenValidate(token)) {
             console.log("User is logged in.");
+            hideLogin();
         }
         else {
             localStorage.removeItem("token");
@@ -18,6 +19,17 @@ function checkToken(){
         console.log("User is not logged in.");
         cleanUserData();
     }
+}
+
+function hideLogin() {
+    const sectionReserva = document.getElementById('reserva');
+    sectionReserva.style.display = "none"
+    const botaoLogin = document.getElementById('entrar');
+    botaoLogin.style.display = "none"
+
+    //mostrar botao de sair
+    const botaoSair = document.getElementById('sair');
+    botaoSair.style.display = "flex"
 }
 
 function cleanUserData(){
@@ -60,6 +72,13 @@ async function tryLogin(email, senha){
     })
 
     if (!response.ok) {
+        if (response.status === 404) {
+            console.error("Usuário não foi encontrado")
+            const notFound = document.getElementById('nao-encontrado')
+            notFound.style.display = "block"
+            return;
+        }
+    
         throw new Error(`Erro: ${response.status}`);
     }
 
@@ -70,8 +89,26 @@ async function tryLogin(email, senha){
     localStorage.setItem("userRole", formatedResponse.user_role);
     localStorage.setItem("userId", formatedResponse.user_id);
     localStorage.setItem("userName", formatedResponse.user_name);
+
+    // Recarrega a página
+    history.scrollRestoration = "manual";
+    location.reload();
+    
 }
 
+//deslogin manual
+document.getElementById('sair').addEventListener('click', function(){
+    cleanUserData();
+    // Recarrega a página
+    location.reload();
+});
+
+function irParaLogin2() {
+    document.getElementById("reserva").scrollIntoView({
+      behavior: "smooth", // rolagem suave
+      block: "start"      // alinha no topo da tela
+    });
+}
 
 // cadastro
 document.getElementById('btn-criar').addEventListener('click', function(){
@@ -89,7 +126,6 @@ document.getElementById('btn-criar').addEventListener('click', function(){
 async function trySubscribe(nome, email, senha){
     const formCriar = document.getElementById('form-criar');
     const formEntrar = document.getElementById('form-entrar');
-    const areaAgendamento = document.getElementById('area-agendamento');
     const aviso = document.getElementById('aviso');
 
     const response = await fetch('http://localhost:5174/auth/register', {
@@ -117,4 +153,9 @@ async function trySubscribe(nome, email, senha){
     console.log('usuário cadastrado realizado com sucesso:', userid)
 
     alert('Conta criada com sucesso! Você está logado.');
+
+    //redirecionar para login
+    formCriar.style.display = "none"
+    aviso.style.display = "none"
+    formEntrar.style.display = "block"
 }
