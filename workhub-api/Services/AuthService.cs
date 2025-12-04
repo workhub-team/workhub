@@ -92,7 +92,7 @@ namespace workhub_api.Services
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(30), // Sessão dura 30 min OwO
+                expires: DateTime.Now.AddHours(3), // Sessão dura 3h OwO
                 signingCredentials: creds
             );
 

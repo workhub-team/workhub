@@ -23,7 +23,7 @@ public class RoomService : IRoomService
 
         //checar se a sala já existe
         Room foundRoom = _roomRepository.GetRoomByName(roomDto.Name);
-        if (foundRoom != null)
+        if (foundRoom != null && foundRoom.UnityId == roomDto.UnityId)
         {
             return new ObjectResult("Sala com nome já registrado.") { StatusCode = 409 };    
         }

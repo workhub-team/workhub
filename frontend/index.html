@@ -199,15 +199,26 @@
                     <select type="select" id="input-sala" disabled required>
                         <option value="">Selecione a sala</option>
                     </select>
-
+                    
+                    <div id="form-row">
+                        <div class="form-item">
+                            <label for="input-capacidade">Capacidade:</label>
+                            <input type="text" id="input-capacidade" disabled>
+                        </div>
+                        <div class="form-item">
+                            <label for="input-tipo">Tipo:</label>
+                            <input type="text" id="input-tipo" disabled>
+                        </div>
+                    </div>
+                
                     <label for="input-data">Data:</label>
                     <input type="date" id="input-data" disabled required>
 
                     <label for="input-hora">Turno:</label>
                     <select type="select" id="input-hora" disabled required>
-                        <option value="manhã">Manhã (6h - 12h)</option>
-                        <option value="tarde">Tarde (13h - 18h)</option>
-                        <option value="full">Dia Inteiro (6h - 18h)</option>
+                        <option value="manhã">Manhã (06:00h - 12:00h)</option>
+                        <option value="tarde">Tarde (13:00h - 18:00h)</option>
+                        <option value="full">Dia Inteiro (06:00h - 18:00h)</option>
                     </select>
 
                     <button type="button" id="verificar-disponibilidade">
@@ -220,6 +231,48 @@
                         <img src="img/done.svg" id="loader-confirmar" class="loader-small"/>
                     </button>
                 </form>
+
+                <div id="modal-pagamento">
+                    <div class="aviso-positivo">
+                        <h3>Reserva Verificada!</h3>
+                        <p>Sua reserva está disponível. Complete o pagamento para finalizar.</p>
+                    </div>
+                    <p>Por favor, confirme as informações da sua reserva:</p>
+                    <ul id="resumo-reserva">
+                        <!-- detalhes da reserva serão inseridos aqui -->
+                        <li>Unidade: <span id="resumo-unidade"></span></li>
+                        <li>Sala: <span id="resumo-sala"></span></li>   
+                        <li>Data: <span id="resumo-data"></span></li>
+                        <li>Turno: <span id="resumo-turno"></span></li>
+                        <li>Preço: R$ <span id="resumo-preco"></span></li>
+                    </ul>
+                    <p>Para confirmar sua reserva, por favor, escolha a forma de pagamento:</p>
+                    <form id="pagamento-form">
+                        <h3>Forma de Pagamento</h3>
+                        <div id="form-row2">
+                            <input type="radio" class="forma-pagamento" id="cartao-credito" name="pagamento" value="cartao-credito" required>
+                            <label for="cartao">Cartão de Crédito</label>
+                        </div>
+                        <div id="form-row2">
+                            <input type="radio" class="forma-pagamento" id="cartao-debito" name="pagamento" value="cartao-debito" required>
+                            <label for="cartao">Cartão de Débito</label><br>   
+                        </div>
+                        <div id="form-row2">
+                            <input type="radio" class="forma-pagamento" id="pix" name="pagamento" value="pix" required>
+                            <label for="pix">PIX</label>
+                        </div>
+                        <div id="form-row2">
+                            <input type="radio" class="forma-pagamento" id="dinheiro" name="pagamento" value="dinheiro" required>
+                            <label for="pix">Dinheiro</label>
+                        </div>
+                        <br>
+                        
+                        <button type="button" id="confirmar-reserva" disabled>
+                            Finalizar Pagamento
+                            <img src="img/done.svg" id="loader-confirmar" class="loader-small"/>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
 

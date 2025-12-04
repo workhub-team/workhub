@@ -16,6 +16,14 @@ namespace workhub_api.Controllers
             _reserveService = reserveService;
         }
 
+        [HttpPost("verify")]
+        [Authorize]
+        public IActionResult VerifyReserve([FromBody] ReserveDto request)
+        {
+            var result = _reserveService.VerifyReserve(request);
+            return StatusCode(result.StatusCode , result);
+        }
+
         [HttpPost("create")]
         [Authorize]
         public IActionResult CreateReserve([FromBody] ReserveDto request)
@@ -40,7 +48,7 @@ namespace workhub_api.Controllers
 
         [HttpGet("list/{userId}")]
         [Authorize]
-        public IActionResult GetAllRoomsByUnity([FromRoute] string userId)
+        public IActionResult GetAllRoomsByUser([FromRoute] string userId)
         {
             DynamicResponse reserves = _reserveService.GetAllReservesByUserId(userId);
             return Ok(reserves);
