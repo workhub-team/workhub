@@ -1,5 +1,17 @@
 var formdata = {};
 
+//define a data minima como hoje
+const inputData = document.getElementById('input-data');
+
+const hoje = new Date().toISOString().split('T')[0];
+
+const limite = new Date();
+limite.setDate(limite.getDate() + 30);
+const limiteFormatado = limite.toISOString().split('T')[0];
+
+inputData.setAttribute('min', hoje);
+inputData.setAttribute("max", limiteFormatado);
+
 //abrir modal
 document.querySelectorAll('.btn-abrirmodal').forEach(botao => {
     botao.addEventListener('click', () => {
@@ -74,5 +86,25 @@ selectUnity.addEventListener("change", function() {
         option.textContent = room.name;
         inputRoom.appendChild(option);
     });
+});
+
+//seleção de data
+const selectRoom = document.getElementById('input-sala');
+
+selectRoom.addEventListener("change", function() {
+    if (this.value != "") {
+        const inputData = document.getElementById('input-data');
+        inputData.disabled = false;
+    }
+});
+
+//seleção de turno
+const inputDate = document.getElementById('input-data');
+
+inputDate.addEventListener("change", function() {
+    if (this.value != "") {
+        const inputHora = document.getElementById('input-hora');
+        inputHora.disabled = false;
+    }  
 });
 
