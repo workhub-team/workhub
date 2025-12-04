@@ -152,7 +152,7 @@ async function trySubscribe(nome, email, senha){
     const userid = await response.text();
     console.log('usuário cadastrado realizado com sucesso:', userid)
 
-    alert('Conta criada com sucesso! Você está logado.');
+    // alert('Conta criada com sucesso! Você está logado.');
 
     //redirecionar para login
     formCriar.style.display = "none"

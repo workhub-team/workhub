@@ -27,7 +27,7 @@ public class RoomRepository : IRoomRepository
 
     public string CreateRoom(RoomDto roomDto)
     {
-        bool RoomExists = _context.Rooms.Any(u => u.Name == roomDto.Name);
+        bool RoomExists = _context.Rooms.Any(u => u.Name == roomDto.Name && u.UnityId == roomDto.UnityId);
         if (RoomExists)
         {
             throw new Exception("Room with the same name already exists");
