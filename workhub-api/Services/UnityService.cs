@@ -5,10 +5,12 @@ public class UnityService : IUnityService
 {
 
     private readonly IUnityRepository _unityRepository;
+    private readonly IRoomRepository _roomRepository;
 
-    public UnityService(IUnityRepository unityRepository)
+    public UnityService(IUnityRepository unityRepository, IRoomRepository roomRepository)
     {
         _unityRepository = unityRepository;
+        _roomRepository = roomRepository;
     }
 
 
@@ -59,5 +61,28 @@ public class UnityService : IUnityService
         };
     }
     
+    public DynamicResponse GetAllUnitiesWithRooms()
+    {
+        List<Unity> unities = _unityRepository.GetAllUnities();
 
+        List<UnityWithRoomsDto> unitiesWithRooms = new List<UnityWithRoomsDto>();
+
+        foreach (var unity in unities)
+        {
+            unitiesWithRooms.Add(new UnityWithRoomsDto
+            {
+                Id = unity.Id,
+                Name = unity.Name,
+                Address = unity.Address,
+                Rooms = _roomRepository.GetAllRoomsByUnityId(unity.Id)
+            });
+        }
+
+        return new DynamicResponse
+        {
+            Message = "Unidades retornadas com sucesso.",
+            StatusCode = 200,
+            Data = unitiesWithRooms.Cast<dynamic>().ToList()
+        };
+    }
 }

@@ -44,6 +44,13 @@ namespace workhub_api.Controllers
             DynamicResponse unities = _unityService.GetAllUnities();
             return Ok(unities);
         }
+
+        [HttpGet("list-with-rooms")]
+        public IActionResult GetAllUnitiesWithRooms()
+        {
+            DynamicResponse unities = _unityService.GetAllUnitiesWithRooms();
+            return Ok(unities);
+        }
     }    
 }
 

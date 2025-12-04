@@ -524,4 +524,109 @@ h1 {
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
+    display: none;
+}
+
+#modal-square {
+    background-color: white;
+    width: 400px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#modal-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;       /* cor de fundo do círculo */
+  border-top: 8px solid #3498db;   /* cor da parte que gira */
+  border-radius: 50%;              /* deixa redondo */
+  width: 60px;                     /* tamanho */
+  height: 60px;
+  animation: spin 1s linear infinite; /* animação infinita */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#modal-form {
+    display: none;
+    background-color: white;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+input[type="date"] {
+  width: 100%;          /* ocupa toda a largura do container */
+  box-sizing: border-box; /* inclui padding e borda dentro do width */
+  padding: 8px;          /* ajuste conforme seu design */
+  font-size: 14px;
+}
+
+#modal-title {
+    color: black;
+    text-align: center;
+    margin: 0;
+}
+
+input:disabled, select:disabled {
+  background-color: #eee;   /* cor de fundo */
+  color: #888;              /* cor do texto */
+  border: 1px solid #ccc;   /* borda diferenciada */
+  cursor: not-allowed;      /* cursor de bloqueio */
+}
+
+#verificar-disponibilidade {
+    background-color: #c7a900;
+    display: flex;
+    justify-content: center;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 10px;
+}
+
+#loader-verificar {
+    height: 16px;
+    margin: 0 0 0 5px;
+}
+
+#loader-confirmar {
+    height: 16px;
+    margin: 0 0 0 5px;
+}
+
+#confirmar-reserva {
+    background-color: #28a745;
+    display: flex;
+    justify-content: center;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#confirmar-reserva:disabled {
+    background-color: #94d3a2;
+    cursor: not-allowed;
 }
