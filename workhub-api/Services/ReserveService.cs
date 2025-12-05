@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using workhub_api.Migrations;
 
 public class ReserveService : IReserveService
 {
@@ -15,7 +16,7 @@ public class ReserveService : IReserveService
     {
         //checar se há reservas conflitantes
         bool conflict = _reserveRepository.ValidateReserve(reserveDto);
-        if (conflict)
+        if (!conflict)
         {
             return new ObjectResult("Já há uma reserva nesse horário.") { StatusCode = 409 };    
         }
@@ -109,6 +110,19 @@ public class ReserveService : IReserveService
     public DynamicResponse GetAllReservesByUserId(string userId)
     {
         var reserves = _reserveRepository.GetAllReservesByUserId(userId);
+        // List<UserReservesDto> reserveResponse = new List<UserReservesDto>();
+
+        // foreach (var reserve in reserves)
+        // {
+        //     reserveResponse.Add(new UserReservesDto
+        //     {
+        //         ReserveDate = reserve.ReservedDay,
+        //         ReservePeriod = reserve.ReservedPeriod,
+        //         RoomName = _roomRepository.GetRoomById(reserve.RoomId).Name,
+        //         AccessCode = reserve.AccessCode
+        //     });
+        // }
+
         return new DynamicResponse
         {
             Message = "Reservas retornadas com sucesso.",

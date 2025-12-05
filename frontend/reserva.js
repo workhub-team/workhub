@@ -202,7 +202,8 @@ async function tryVerify(){
 
     if (!response.ok) {
         if (response.status === 409) {
-            alert("A sala já está reservada para o período selecionado.");
+            const modalAviso = document.getElementById('modal-aviso');
+            modalAviso.style.display = 'block';
             return;
         }
         throw new Error(`Erro: ${response.status}`);
@@ -253,5 +254,50 @@ function onFormaPagamentoChange(event) {
     const valor = radio.value; // ex.: "pix", "cartao", "boleto"
     console.log('Forma de pagamento:', valor);
 
-    //desbloqueia
+    //desbloqueia botao de confirmação
+    const btnConfirmar = document.getElementById('confirmar-reserva');
+    btnConfirmar.disabled = false;
+}
+
+//confirmar reserva
+const btnConfirmar = document.getElementById('confirmar-reserva');
+btnConfirmar.addEventListener("click", function() {
+    tryReserve();
+});
+
+async function tryReserve(){
+    const roomId = document.getElementById('input-sala').value;
+    const userId = localStorage.getItem("userId");
+    const reservedDay = document.getElementById('input-data').value;
+    const reservedPeriod = document.getElementById('input-hora').value;
+    const paymentMethod = document.querySelector('input.forma-pagamento[type="radio"]:checked').value; 
+
+    console.log(roomId, userId, reservedDay, reservedPeriod, paymentMethod);
+
+    const response = await fetch('http://localhost:5174/reserve/create', {  
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("token")}` 
+        },
+        body: JSON.stringify({
+            room_id: roomId,
+            user_id: userId,
+            reserved_day: reservedDay,
+            reserved_period: reservedPeriod
+        })
+    })
+
+    if (!response.ok) {
+        if (response.status === 409) {
+            alert("Erro ao agendar reserva.");
+            return;
+        }
+        throw new Error(`Erro: ${response.status}`);
+    }
+
+    const formatedResponse = await response.text();
+    console.log('Reserva realizada com sucesso:', formatedResponse)
+    window.location.href = "minhas-reservas.html"
+    
 }

@@ -741,3 +741,108 @@ input[type="radio"] {
     display: none;
     margin: 12px 0px 0px 0px;
 }
+
+
+/* Tabela moderna com colunas ocupando a largura total */
+table {
+  width: 100%;
+  table-layout: fixed;         /* distribui a largura entre as colunas */
+  border-collapse: separate;   /* para border-radius */
+  border-spacing: 0;
+
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* Legenda */
+caption {
+  caption-side: top;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: .2px;
+  color: #111827;
+  padding: 12px 14px;
+}
+
+/* Cabeçalho sticky (em muitos navegadores funciona com th sticky) */
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, #f9fafb 0%, #f3f4f6 100%);
+  color: #111827;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  font-size: .78rem;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  white-space: nowrap;
+}
+
+/* Células */
+tbody td, thead th { text-align: left; }
+tbody td {
+  padding: 12px 16px;
+  font-size: .92rem;
+  color: #374151;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  overflow: hidden;            /* importante com table-layout: fixed */
+  text-overflow: ellipsis;     /* reticências se estourar */
+  white-space: nowrap;         /* evita quebrar em múltiplas linhas */
+}
+
+/* Zebra */
+tbody tr:nth-child(odd) { background: #fcfcfd; }
+tbody tr:nth-child(even){ background: #ffffff; }
+
+/* Hover */
+tbody tr:hover { background: #f5f7fb; }
+
+/* Foco via teclado */
+tbody tr:focus-within {
+  outline: 2px solid #3b82f6;
+  outline-offset: -2px;
+}
+
+/* Alinhamento numérico opcional */
+tbody td:last-child { text-align: right; }
+
+/* Ajuste de padding nas bordas arredondadas */
+thead th:first-child, tbody td:first-child { padding-left: 18px; }
+thead th:last-child,  tbody td:last-child  { padding-right: 18px; }
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  table {
+    background: #0b0e13;
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  }
+  caption { color: #e5e7eb; }
+  thead th {
+    background: linear-gradient(180deg, #161b22 0%, #111827 100%);
+    color: #e5e7eb;
+    border-bottom-color: rgba(255,255,255,0.08);
+  }
+  tbody td {
+    color: #d1d5db;
+    border-top-color: rgba(255,255,255,0.06);
+  }
+  tbody tr:nth-child(odd) { background: #0f141a; }
+  tbody tr:nth-child(even){ background: #0b0e13; }
+  tbody tr:hover { background: #12171e; }
+}
+
+#modal-aviso {
+    display: none;
+    background-color: rgb(255, 195, 195);
+    color: red;
+    border: red 2px solid;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
