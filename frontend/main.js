@@ -1,7 +1,7 @@
 checkToken();
 
 // checagem de token
-function checkToken(){
+function checkToken() {
     // search for token in local storage
     const token = localStorage.getItem("token");
     if (token) {
@@ -32,14 +32,14 @@ function hideLogin() {
     botaoSair.style.display = "flex"
 }
 
-function cleanUserData(){
+function cleanUserData() {
     localStorage.removeItem("token");
     localStorage.removeItem("userRole")
     localStorage.removeItem("userId");
     localStorage.removeItem("userName");
 }
 
-function tokenValidate(token){
+function tokenValidate(token) {
     //check token expiration 
     tokenPayload = JSON.parse(atob(token.split('.')[1]));
     const currentTime = Math.floor(Date.now() / 1000);
@@ -49,23 +49,23 @@ function tokenValidate(token){
 }
 
 // login
-document.getElementById('btn-login').addEventListener('click', function(){
+document.getElementById('btn-login').addEventListener('click', function () {
     const email = document.getElementById('login-email').value.trim();
     const senha = document.getElementById('login-senha').value.trim();
-    if(!email || !senha){
-        alert('Preencha e-mail e senha para entrar.');
+    if (!email || !senha) {
+        showToast('Preencha e-mail e senha para entrar.', 'warning');
         return;
     }
     tryLogin(email, senha);
 });
 
-async function tryLogin(email, senha){
+async function tryLogin(email, senha) {
     const response = await fetch('http://localhost:5174/auth/login', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'  
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
             email: email,
             password: senha
         })
@@ -78,7 +78,7 @@ async function tryLogin(email, senha){
             notFound.style.display = "block"
             return;
         }
-    
+
         throw new Error(`Erro: ${response.status}`);
     }
 
@@ -93,11 +93,11 @@ async function tryLogin(email, senha){
     // Recarrega a página
     history.scrollRestoration = "manual";
     location.reload();
-    
+
 }
 
 //deslogin manual
-document.getElementById('sair').addEventListener('click', function(){
+document.getElementById('sair').addEventListener('click', function () {
     cleanUserData();
     // Recarrega a página
     location.reload();
@@ -105,25 +105,25 @@ document.getElementById('sair').addEventListener('click', function(){
 
 function irParaLogin2() {
     document.getElementById("reserva").scrollIntoView({
-      behavior: "smooth", // rolagem suave
-      block: "start"      // alinha no topo da tela
+        behavior: "smooth", // rolagem suave
+        block: "start"      // alinha no topo da tela
     });
 }
 
 // cadastro
-document.getElementById('btn-criar').addEventListener('click', function(){
+document.getElementById('btn-criar').addEventListener('click', function () {
     const nome = document.getElementById('nome').value.trim();
     const email = document.getElementById('email').value.trim();
     const senha = document.getElementById('senha').value.trim();
-    if(!nome || !email || !senha){
-        alert('Por favor preencha todos os campos para criar a conta.');
+    if (!nome || !email || !senha) {
+        showToast('Por favor preencha todos os campos para criar a conta.', 'warning');
         return;
     }
     // simula criação e login
     trySubscribe(nome, email, senha);
 });
 
-async function trySubscribe(nome, email, senha){
+async function trySubscribe(nome, email, senha) {
     const formCriar = document.getElementById('form-criar');
     const formEntrar = document.getElementById('form-entrar');
     const aviso = document.getElementById('aviso');
@@ -131,9 +131,9 @@ async function trySubscribe(nome, email, senha){
     const response = await fetch('http://localhost:5174/auth/register', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'  
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
             username: nome,
             password: senha,
             email: email,
@@ -144,7 +144,7 @@ async function trySubscribe(nome, email, senha){
         console.error(`Erro: ${response.status}`);
 
         if (response.status === 409) {
-            alert('E-mail já cadastrado. Por favor, utilize outro e-mail.');
+            showToast('E-mail já cadastrado. Por favor, utilize outro e-mail.', 'error');
             return;
         }
     }
@@ -157,5 +157,97 @@ async function trySubscribe(nome, email, senha){
     //redirecionar para login
     formCriar.style.display = "none"
     aviso.style.display = "none"
-    formEntrar.style.display = "block"
+    formEntrar.style.display = "flex"
 }
+
+// Toast Notification System
+function showToast(message, type = 'info') {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+
+    let icon = 'ℹ️';
+    if (type === 'success') icon = '✅';
+    if (type === 'error') icon = '❌';
+    if (type === 'warning') icon = '⚠️';
+
+    toast.innerHTML = `
+        <span class="toast-icon">${icon}</span>
+        <span class="toast-message">${message}</span>
+    `;
+
+    container.appendChild(toast);
+
+    // Auto remove after 3 seconds
+    setTimeout(() => {
+        toast.style.animation = 'slideOut 0.3s ease forwards';
+        toast.addEventListener('animationend', () => {
+            toast.remove();
+        });
+    }, 3000);
+}
+
+// Accessibility: Font Size & Family Control
+document.addEventListener('DOMContentLoaded', () => {
+    const btnIncrease = document.getElementById('btn-increase-font');
+    const btnDecrease = document.getElementById('btn-decrease-font');
+    const btnToggleFont = document.getElementById('btn-toggle-font');
+    const root = document.documentElement;
+
+    // Font Size Logic
+    let currentFontSize = 100; // percentage
+    const minFontSize = 80;
+    const maxFontSize = 150;
+    const step = 10;
+
+    function updateFontSize() {
+        root.style.fontSize = `${currentFontSize}%`;
+        localStorage.setItem('userFontSize', currentFontSize);
+    }
+
+    const savedFontSize = localStorage.getItem('userFontSize');
+    if (savedFontSize) {
+        currentFontSize = parseInt(savedFontSize);
+        updateFontSize();
+    }
+
+    if (btnIncrease) {
+        btnIncrease.addEventListener('click', () => {
+            if (currentFontSize < maxFontSize) {
+                currentFontSize += step;
+                updateFontSize();
+            }
+        });
+    }
+
+    if (btnDecrease) {
+        btnDecrease.addEventListener('click', () => {
+            if (currentFontSize > minFontSize) {
+                currentFontSize -= step;
+                updateFontSize();
+            }
+        });
+    }
+
+    // Font Family Logic
+    const fonts = ['var(--font-sans)', 'var(--font-serif)', 'var(--font-mono)'];
+    let currentFontIndex = 0;
+
+    function updateFontFamily() {
+        root.style.setProperty('--font-main', fonts[currentFontIndex]);
+        localStorage.setItem('userFontIndex', currentFontIndex);
+    }
+
+    const savedFontIndex = localStorage.getItem('userFontIndex');
+    if (savedFontIndex) {
+        currentFontIndex = parseInt(savedFontIndex);
+        updateFontFamily();
+    }
+
+    if (btnToggleFont) {
+        btnToggleFont.addEventListener('click', () => {
+            currentFontIndex = (currentFontIndex + 1) % fonts.length;
+            updateFontFamily();
+        });
+    }
+});

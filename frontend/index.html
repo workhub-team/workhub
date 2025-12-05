@@ -2,204 +2,205 @@
 
 <html lang="pt-br">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>WorkHub - Coworking</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkHub - Coworking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    <body>
-        <!-- Cabeçalho -->
-        <header>
-            <a href="index.html">
-                <div class="logo">
-                    <img src="img/logo_workHub.png" class="logo">
-                </div>
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="#salas">Salas</a></li>
-                    <li><a href="#planos">Planos</a></li>
-                    <li><a href="#reserva">Reserve uma Sala</a></li>
-                    <li><a id="minhas-reservas" href="minhas-reservas.html">Minhas Reservas</a></li>
-                    <li>
-                        <a id="sair">
-                            Sair
-                            <img src="img/exit.svg">
-                        </a>
-                    </li>
-                    <li id="entrar">
-                        <a onclick="irParaLogin2()" id="entrar">
-                            Entrar
-                            <img src="img/enter.svg">
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-
-        <!-- Seção Home -->
-        <section id="home" class="hero" style="background-image: url('img/capa_workHub.png');">
-            <div class="capa">
-                <h1>Bem-vindo ao WorkHub</h1>
-                <p>Seu espaço ideal para trabalhar, criar e inovar</p>
-                <a class="btn btn-abrirmodal">Reserve Agora</a>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <a href="index.html">
+            <div class="logo">
+                <img src="img/logo_workHub.png" class="logo">
             </div>
-        </section>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#salas">Salas</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#reserva">Reserve uma Sala</a></li>
+                <li><a id="minhas-reservas" href="minhas-reservas.html">Minhas Reservas</a></li>
+                <li>
+                    <a id="sair">
+                        Sair
+                        <img src="img/exit.svg">
+                    </a>
+                </li>
+                <li id="entrar">
+                    <a onclick="irParaLogin2()" id="entrar">
+                        Entrar
+                        <img src="img/enter.svg">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-        <!-- Seção Sobre Nós -->
-        <section id="sobre" class="section sobre-nos">
-            <h2>Sobre Nós</h2>
-            <p>
-                No <strong>WorkHub</strong>, acreditamos que o sucesso nasce da colaboração e da criatividade. 
-                Nosso objetivo é oferecer um ambiente moderno, confortável e inspirador, onde profissionais e empresas 
-                possam crescer juntos. 
-            </p>
-            <p>
-                Com salas privativas e mesas compartilhadas, proporcionamos liberdade e flexibilidade para o seu trabalho, 
-                seja individual, em equipe ou em projetos colaborativos. Aqui, cada espaço foi pensado para promover 
-                produtividade, conexões e novas oportunidades.
-            </p> <br/>
-        </section>
+    <!-- Seção Home -->
+    <section id="home" class="hero" style="background-image: url('img/capa_workHub.png');">
+        <div class="capa">
+            <h1>Bem-vindo ao WorkHub</h1>
+            <p>Seu espaço ideal para trabalhar, criar e inovar</p>
+            <a class="btn btn-abrirmodal">Reserve Agora</a>
+        </div>
+    </section>
 
-        <!-- Seção Salas -->
-        <section id="salas" class="section">
-            <h2>Salas Disponíveis</h2>
-            <div class="salas-container">
-                <div class="sala">
-                    <img src="img/sala_4pessoas.png" alt="Sala para 4 pessoas" class="img-sala"/>
-                    <h3>Sala para 4 pessoas</h3>
-                    <p>Ideal para pequenas equipes ou reuniões rápidas.</p>
+    <!-- Seção Sobre Nós -->
+    <section id="sobre" class="section sobre-nos">
+        <h2>Sobre Nós</h2>
+        <p>
+            No <strong>WorkHub</strong>, acreditamos que o sucesso nasce da colaboração e da criatividade.
+            Nosso objetivo é oferecer um ambiente moderno, confortável e inspirador, onde profissionais e empresas
+            possam crescer juntos.
+        </p>
+        <p>
+            Com salas privativas e mesas compartilhadas, proporcionamos liberdade e flexibilidade para o seu trabalho,
+            seja individual, em equipe ou em projetos colaborativos. Aqui, cada espaço foi pensado para promover
+            produtividade, conexões e novas oportunidades.
+        </p> <br />
+    </section>
+
+    <!-- Seção Salas -->
+    <section id="salas" class="section">
+        <h2>Salas Disponíveis</h2>
+        <div class="salas-container">
+            <div class="sala">
+                <img src="img/sala_4pessoas.png" alt="Sala para 4 pessoas" class="img-sala" />
+                <h3>Sala para 4 pessoas</h3>
+                <p>Ideal para pequenas equipes ou reuniões rápidas.</p>
+            </div>
+            <div class="sala">
+                <img src="img/sala_4pessoas.png" alt="Sala para 5 pessoas" class="img-sala" />
+                <h3>Sala para 5 pessoas</h3>
+                <p>Ambiente confortável e produtivo para equipes médias.</p>
+            </div>
+            <div class="sala">
+                <img src="img/sala_10pessoas.png" alt="Sala para 10 pessoas" class="img-sala" />
+                <h3>Sala para 10 pessoas</h3>
+                <p>Espaço amplo para grandes reuniões ou workshops.</p>
+            </div>
+            <div class="sala">
+                <img src="img/sala_compartilhada.png" alt="Sala compartilhada" class="img-sala" />
+                <h3>Mesas Compartilhadas</h3>
+                <p>Alugue por diária ou mensalmente. Conecte-se com outros profissionais!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Planos -->
+    <section id="planos" class="section">
+        <div class="overlay">
+            <h2>Nossos Planos</h2>
+            <p>Escolha o plano ideal para o seu ritmo de trabalho</p>
+            <div class="planos-container">
+
+                <div class="plano">
+                    <h3>Sala para 4 Pessoas</h3>
+                    <p>Perfeita para pequenas equipes e reuniões curtas.</p>
+                    <ul>
+
+                        <li>R$ 180 / meia diária</li>
+                        <li>R$ 300 / diária</li>
+                    </ul>
+                    <a class="btn btn-abrirmodal">Agendar</a>
                 </div>
-                <div class="sala">
-                    <img src="img/sala_4pessoas.png" alt="Sala para 5 pessoas" class="img-sala"/>
-                    <h3>Sala para 5 pessoas</h3>
-                    <p>Ambiente confortável e produtivo para equipes médias.</p>
+
+                <div class="plano">
+                    <h3>Sala para 5 Pessoas</h3>
+                    <p>Conforto e privacidade para equipes médias.</p>
+                    <ul>
+
+                        <li>R$ 220 / meia diária</li>
+                        <li>R$ 380 / diária</li>
+                    </ul>
+                    <a class="btn btn-abrirmodal">Agendar</a>
                 </div>
-                <div class="sala">
-                    <img src="img/sala_10pessoas.png" alt="Sala para 10 pessoas" class="img-sala"/>
-                    <h3>Sala para 10 pessoas</h3>
-                    <p>Espaço amplo para grandes reuniões ou workshops.</p>
+
+                <div class="plano">
+                    <h3>Sala para 10 Pessoas</h3>
+                    <p>Espaço amplo ideal para workshops e reuniões grandes.</p>
+                    <ul>
+
+                        <li>R$ 350 / meia diária</li>
+                        <li>R$ 600 / diária</li>
+                    </ul>
+                    <a class="btn btn-abrirmodal">Agendar</a>
                 </div>
-                <div class="sala">
-                    <img src="img/sala_compartilhada.png" alt="Sala compartilhada" class="img-sala"/>
+
+                <div class="plano">
                     <h3>Mesas Compartilhadas</h3>
-                    <p>Alugue por diária ou mensalmente. Conecte-se com outros profissionais!</p>
-                </div>
-            </div>
-        </section>
+                    <p>Flexibilidade total para trabalhar em um ambiente colaborativo.</p>
+                    <ul>
 
-        <!-- Seção Planos -->
-        <section id="planos" class="section">
-            <div class="overlay">
-                <h2>Nossos Planos</h2>
-                <p>Escolha o plano ideal para o seu ritmo de trabalho</p>
-                <div class="planos-container">
-
-                    <div class="plano">
-                        <h3>Sala para 4 Pessoas</h3>
-                        <p>Perfeita para pequenas equipes e reuniões curtas.</p>
-                        <ul>
-                        
-                            <li>R$ 180 / meia diária</li>
-                            <li>R$ 300 / diária</li>
-                        </ul>
-                        <a class="btn btn-abrirmodal">Agendar</a>
-                    </div>
-
-                    <div class="plano">
-                        <h3>Sala para 5 Pessoas</h3>
-                        <p>Conforto e privacidade para equipes médias.</p>
-                        <ul>
-                        
-                            <li>R$ 220 / meia diária</li>
-                            <li>R$ 380 / diária</li>
-                        </ul>
-                        <a class="btn btn-abrirmodal">Agendar</a>
-                    </div>
-
-                    <div class="plano">
-                        <h3>Sala para 10 Pessoas</h3>
-                        <p>Espaço amplo ideal para workshops e reuniões grandes.</p>
-                        <ul>
-                
-                            <li>R$ 350 / meia diária</li>
-                            <li>R$ 600 / diária</li>
-                        </ul>
-                        <a class="btn btn-abrirmodal">Agendar</a>
-                    </div>
-
-                    <div class="plano">
-                        <h3>Mesas Compartilhadas</h3>
-                        <p>Flexibilidade total para trabalhar em um ambiente colaborativo.</p>
-                        <ul>
-                
-                            <li>R$ 80 / diária</li>
-                            <li>R$ 500 / mensal</li>
-                        </ul>
-                        <a class="btn btn-abrirmodal">Reservar</a>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção Reserva (substituir a antiga) -->
-        <section id="reserva" class="section">
-            <h1>Faça Login</h1>
-
-            <div class="form-container">
-                <!-- abas rápidas -->
-                <div style="display:flex;gap:8px;justify-content:center;margin-bottom:12px;">
-                    <button type="button" id="btn-entrar" class="btn">Já tenho conta / Entrar</button>
-                    <button type="button" id="btn-criar-view" class="btn">Criar Conta</button>
+                        <li>R$ 80 / diária</li>
+                        <li>R$ 500 / mensal</li>
+                    </ul>
+                    <a class="btn btn-abrirmodal">Reservar</a>
                 </div>
 
-                <!-- aviso -->
-                <p id="aviso" class="alerta">⚠️ Você precisa se cadastrar ou entrar para fazer uma reserva.</p>
-
-                <!-- Formulário de criação (padrão visível) -->
-                <form id="form-criar" style="display:block;">
-                    <h3>Crie sua Conta</h3>
-                    <input type="text" id="nome" placeholder="Nome completo" required>
-                    <input type="email" id="email" placeholder="E-mail" required>
-                    <input type="password" id="senha" placeholder="Senha" required>
-                    <button type="button" class="btn" id="btn-criar">Criar Conta</button>
-                </form>
-
-                <!-- Formulário de login (inicialmente oculto) -->
-                <form id="form-entrar" style="display:none;">
-                    <h3>Entrar</h3>
-                    <input type="email" id="login-email" placeholder="E-mail" required>
-                    <input type="password" id="login-senha" placeholder="Senha" required>
-                    <button type="button" class="btn" id="btn-login">Entrar</button>
-                </form>
-
-                <!-- Área de agendamento (inicialmente oculta) -->
-                <form id="area-agendamento" style="display:none;margin-top:12px;">
-                    <h3>Agendar Sala</h3>
-                    <select id="sala-select" required>
-                        <option value="">Selecione a sala</option>
-                        <option>Sala para 4 pessoas</option>
-                        <option>Sala para 5 pessoas</option>
-                        <option>Sala para 10 pessoas</option>
-                        <option>Mesas Compartilhadas</option>
-                    </select>
-                    <input type="date" id="data-agenda" required>
-                    <input type="time" id="hora-agenda" required>
-                    <button type="submit" class="btn" id="btn-agendar">Agendar</button>
-                </form>
-                <p id="nao-encontrado" class="alerta">O usuário não foi encontrado, verifique se o usuário e/ou senha estão corretos.</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Modal de Reserva -->
-        <div id="modal-reserva">
-            
-            <div id="modal-square">
-                <div id="modal-close">X</div>
-                <h2 id="modal-title">Reservar Sala</h1>
+    <!-- Seção Reserva (substituir a antiga) -->
+    <section id="reserva" class="section">
+        <h1>Faça Login</h1>
+
+        <div class="form-container">
+            <!-- abas rápidas -->
+            <div style="display:flex;gap:8px;justify-content:center;margin-bottom:12px;">
+                <button type="button" id="btn-entrar" class="btn">Já tenho conta / Entrar</button>
+                <button type="button" id="btn-criar-view" class="btn">Criar Conta</button>
+            </div>
+
+            <!-- aviso -->
+            <p id="aviso" class="alerta">⚠️ Você precisa se cadastrar ou entrar para fazer uma reserva.</p>
+
+            <!-- Formulário de criação (padrão visível) -->
+            <form id="form-criar" style="display:flex;">
+                <h3>Crie sua Conta</h3>
+                <input type="text" id="nome" placeholder="Nome completo" required>
+                <input type="email" id="email" placeholder="E-mail" required>
+                <input type="password" id="senha" placeholder="Senha" required>
+                <button type="button" class="btn" id="btn-criar">Criar Conta</button>
+            </form>
+
+            <!-- Formulário de login (inicialmente oculto) -->
+            <form id="form-entrar" style="display:none;">
+                <h3>Entrar</h3>
+                <input type="email" id="login-email" placeholder="E-mail" required>
+                <input type="password" id="login-senha" placeholder="Senha" required>
+                <button type="button" class="btn" id="btn-login">Entrar</button>
+            </form>
+
+            <!-- Área de agendamento (inicialmente oculta) -->
+            <form id="area-agendamento" style="display:none;margin-top:12px;">
+                <h3>Agendar Sala</h3>
+                <select id="sala-select" required>
+                    <option value="">Selecione a sala</option>
+                    <option>Sala para 4 pessoas</option>
+                    <option>Sala para 5 pessoas</option>
+                    <option>Sala para 10 pessoas</option>
+                    <option>Mesas Compartilhadas</option>
+                </select>
+                <input type="date" id="data-agenda" required>
+                <input type="time" id="hora-agenda" required>
+                <button type="submit" class="btn" id="btn-agendar">Agendar</button>
+            </form>
+            <p id="nao-encontrado" class="alerta">O usuário não foi encontrado, verifique se o usuário e/ou senha estão
+                corretos.</p>
+        </div>
+    </section>
+
+    <!-- Modal de Reserva -->
+    <div id="modal-reserva">
+
+        <div id="modal-square">
+            <div id="modal-close">X</div>
+            <h2 id="modal-title">Reservar Sala</h1>
                 <div id="modal-loading">
                     <div class="loader"></div>
                 </div>
@@ -214,7 +215,7 @@
                     <select type="select" id="input-sala" disabled required>
                         <option value="">Selecione a sala</option>
                     </select>
-                    
+
                     <div id="form-row">
                         <div class="form-item">
                             <label for="input-capacidade">Capacidade:</label>
@@ -225,7 +226,7 @@
                             <input type="text" id="input-tipo" disabled>
                         </div>
                     </div>
-                
+
                     <label for="input-data">Data:</label>
                     <input type="date" id="input-data" disabled required>
 
@@ -238,12 +239,12 @@
 
                     <button type="button" id="verificar-disponibilidade">
                         Verificar disponibilidade
-                        <img src="img/search.svg" id="loader-verificar" class="loader-small"/>
+                        <img src="img/search.svg" id="loader-verificar" class="loader-small" />
                     </button>
-                    
+
                     <button type="button" id="confirmar-reserva" disabled>
                         Confirmar reserva
-                        <img src="img/done.svg" id="loader-confirmar" class="loader-small"/>
+                        <img src="img/done.svg" id="loader-confirmar" class="loader-small" />
                     </button>
                 </form>
 
@@ -256,7 +257,7 @@
                     <ul id="resumo-reserva">
                         <!-- detalhes da reserva serão inseridos aqui -->
                         <li>Unidade: <span id="resumo-unidade"></span></li>
-                        <li>Sala: <span id="resumo-sala"></span></li>   
+                        <li>Sala: <span id="resumo-sala"></span></li>
                         <li>Data: <span id="resumo-data"></span></li>
                         <li>Turno: <span id="resumo-turno"></span></li>
                         <li>Preço: R$ <span id="resumo-preco"></span></li>
@@ -265,56 +266,68 @@
                     <form id="pagamento-form">
                         <h3>Forma de Pagamento</h3>
                         <div id="form-row2">
-                            <input type="radio" class="forma-pagamento" id="cartao-credito" name="pagamento" value="cartao-credito" required>
+                            <input type="radio" class="forma-pagamento" id="cartao-credito" name="pagamento"
+                                value="cartao-credito" required>
                             <label for="cartao">Cartão de Crédito</label>
                         </div>
                         <div id="form-row2">
-                            <input type="radio" class="forma-pagamento" id="cartao-debito" name="pagamento" value="cartao-debito" required>
-                            <label for="cartao">Cartão de Débito</label><br>   
+                            <input type="radio" class="forma-pagamento" id="cartao-debito" name="pagamento"
+                                value="cartao-debito" required>
+                            <label for="cartao">Cartão de Débito</label><br>
                         </div>
                         <div id="form-row2">
                             <input type="radio" class="forma-pagamento" id="pix" name="pagamento" value="pix" required>
                             <label for="pix">PIX</label>
                         </div>
                         <div id="form-row2">
-                            <input type="radio" class="forma-pagamento" id="dinheiro" name="pagamento" value="dinheiro" required>
+                            <input type="radio" class="forma-pagamento" id="dinheiro" name="pagamento" value="dinheiro"
+                                required>
                             <label for="pix">Dinheiro</label>
                         </div>
                         <br>
-                        
+
                         <button type="button" id="confirmar-reserva" disabled>
                             Finalizar Pagamento
-                            <img src="img/done.svg" id="loader-confirmar" class="loader-small"/>
+                            <img src="img/done.svg" id="loader-confirmar" class="loader-small" />
                         </button>
                     </form>
                 </div>
-            </div>
         </div>
+    </div>
 
-        <script src="main.js" crossorigin="anonymous"></script>
-        <script src="reserva.js" crossorigin="anonymous"></script>
+    <script src="main.js" crossorigin="anonymous"></script>
+    <script src="reserva.js" crossorigin="anonymous"></script>
 
-        <script>
-            /* Lógica simples (simulada) - sem backend */
-            (function(){
-                const formCriar = document.getElementById('form-criar');
-                const formEntrar = document.getElementById('form-entrar');
+    <script>
+        /* Lógica simples (simulada) - sem backend */
+        (function () {
+            const formCriar = document.getElementById('form-criar');
+            const formEntrar = document.getElementById('form-entrar');
 
-                // abas
-                document.getElementById('btn-entrar').addEventListener('click', function(){
-                    formCriar.style.display = 'none';
-                    formEntrar.style.display = 'block';
-                });
-                document.getElementById('btn-criar-view').addEventListener('click', function(){
-                    formEntrar.style.display = 'none';
-                    formCriar.style.display = 'block';
-                });
-            })();
-        </script>
-        <!-- Rodapé -->
-        <footer>
-            <p>© 2025 WorkHub | Todos os direitos reservados</p>
-        </footer>
-    </body>
+            // abas
+            document.getElementById('btn-entrar').addEventListener('click', function () {
+                formCriar.style.display = 'none';
+                formEntrar.style.display = 'flex';
+            });
+            document.getElementById('btn-criar-view').addEventListener('click', function () {
+                formEntrar.style.display = 'none';
+                formCriar.style.display = 'flex';
+            });
+        })();
+    </script>
+    <!-- Acessibilidade -->
+    <div id="accessibility-controls">
+        <button id="btn-decrease-font" aria-label="Diminuir fonte">A-</button>
+        <button id="btn-increase-font" aria-label="Aumentar fonte">A+</button>
+        <button id="btn-toggle-font" aria-label="Alternar fonte">F</button>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 2025 WorkHub | Todos os direitos reservados</p>
+    </footer>
+</body>
 
 </html>

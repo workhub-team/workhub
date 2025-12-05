@@ -39,7 +39,7 @@ document.querySelectorAll('.btn-abrirmodal').forEach(botao => {
             irParaLogin();
         }
 
-        
+
     });
 });
 
@@ -48,8 +48,8 @@ function irParaLogin() {
     const alertaElement = document.getElementById("aviso");
     alertaElement.style.display = "block"
     document.getElementById("reserva").scrollIntoView({
-      behavior: "smooth", // rolagem suave
-      block: "start"      // alinha no topo da tela
+        behavior: "smooth", // rolagem suave
+        block: "start"      // alinha no topo da tela
     });
 }
 
@@ -74,11 +74,11 @@ document.getElementById('modal-close').addEventListener('click', () => {
 });
 
 async function getUnities() {
-    console.log("Obtendo unidades..."); 
+    console.log("Obtendo unidades...");
     const response = await fetch('http://localhost:5174/unity/list-with-rooms', {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json'  
+            'Content-Type': 'application/json'
         }
     })
 
@@ -104,7 +104,7 @@ async function getUnities() {
 function populateForm(data) {
     const inputUnidade = document.getElementById('input-unidade');
     //reset options
-    
+
     data.forEach(unity => {
         const option = document.createElement('option');
         option.value = unity.id;
@@ -116,7 +116,7 @@ function populateForm(data) {
 // seleção de unidade
 const selectUnity = document.getElementById("input-unidade");
 
-selectUnity.addEventListener("change", function() {
+selectUnity.addEventListener("change", function () {
     const valorSelecionado = this.value; // pega o valor
     const textoSelecionado = this.options[this.selectedIndex].text; // pega o texto visível
 
@@ -124,7 +124,7 @@ selectUnity.addEventListener("change", function() {
     console.log("Texto:", textoSelecionado);
 
     var rooms = formdata.find(unity => unity.id == valorSelecionado).rooms;
-    console.log(rooms); 
+    console.log(rooms);
 
     const inputRoom = document.getElementById('input-sala');
     inputRoom.disabled = false;
@@ -140,7 +140,7 @@ selectUnity.addEventListener("change", function() {
 //seleção de sala
 const selectRoom = document.getElementById('input-sala');
 
-selectRoom.addEventListener("change", function() {
+selectRoom.addEventListener("change", function () {
     if (this.value != "") {
         //popula campo de capacidade
         foundCapacity = formdata.find(unity => unity.id == selectUnity.value)
@@ -149,7 +149,7 @@ selectRoom.addEventListener("change", function() {
         const inputCapacidade = document.getElementById('input-capacidade');
         // inputCapacidade.disabled = false;
         inputCapacidade.value = foundCapacity + " Pessoas";
-        
+
         //popula campo de tipo
         foundTipo = formdata.find(unity => unity.id == selectUnity.value)
             .rooms.find(room => room.id == this.value).isShared ? "Compartilhada" : "Privada";
@@ -165,21 +165,21 @@ selectRoom.addEventListener("change", function() {
 //seleção de turno
 const inputDate = document.getElementById('input-data');
 
-inputDate.addEventListener("change", function() {
+inputDate.addEventListener("change", function () {
     if (this.value != "") {
         const inputHora = document.getElementById('input-hora');
         inputHora.disabled = false;
-    }  
+    }
 });
 
 //verificar disponibilidade
 const btnVerificar = document.getElementById('verificar-disponibilidade');
 
-btnVerificar.addEventListener("click", function() {
+btnVerificar.addEventListener("click", function () {
     tryVerify();
 });
 
-async function tryVerify(){
+async function tryVerify() {
     const roomId = document.getElementById('input-sala').value;
     const userId = localStorage.getItem("userId");
     const reservedDay = document.getElementById('input-data').value;
@@ -190,9 +190,9 @@ async function tryVerify(){
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem("token")}` 
+            'Authorization': `Bearer ${localStorage.getItem("token")}`
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
             room_id: roomId,
             user_id: userId,
             reserved_day: reservedDay,
@@ -202,7 +202,7 @@ async function tryVerify(){
 
     if (!response.ok) {
         if (response.status === 409) {
-            alert("A sala já está reservada para o período selecionado.");
+            showToast("A sala já está reservada para o período selecionado.", 'error');
             return;
         }
         throw new Error(`Erro: ${response.status}`);
@@ -245,10 +245,10 @@ const radios = document.querySelectorAll('input.forma-pagamento[type="radio"]');
 radios.forEach(r => r.addEventListener('change', onFormaPagamentoChange));
 function onFormaPagamentoChange(event) {
     const radio = event.target;
-    if (!radio.checked) return; 
+    if (!radio.checked) return;
 
     //desbloqueia botao de confirmação
-    
+
 
     const valor = radio.value; // ex.: "pix", "cartao", "boleto"
     console.log('Forma de pagamento:', valor);
