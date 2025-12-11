@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using workhub_api.Services;
@@ -38,11 +39,11 @@ namespace workhub_api.Controllers
             return StatusCode(200, _roomService.DeleteRoom(id));
         }
 
-        [HttpGet("list")]
+        [HttpGet("list/{id}")]
         [Authorize]
-        public IActionResult GetAllRoomsByUnity(string unityId)
+        public IActionResult GetAllRoomsByUnity([FromRoute] string id)
         {
-            DynamicResponse unities = _roomService.GetAllRoomsByUnityId(unityId);
+            DynamicResponse unities = _roomService.GetAllRoomsByUnityId(id);
             return Ok(unities);
         }
     }    

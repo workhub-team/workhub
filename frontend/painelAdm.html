@@ -48,40 +48,42 @@
         <section class="card">
             <h2>Gerenciar Salas</h2>
             <form>
+                <h3>Selecione uma Unidade</h3>
                 <select id="filtro-unidade">
                     <option value="" disabled selected>Selecione uma Unidade</option>
                 </select>
             </form>
-            <h3>Salas Cadastradas</h3>
-            
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Capacidade</th>
-                        <th>Tipo</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="lista-salas"></tbody>
-            </table>
 
-            <h3>Criar Sala</h3>
-            
-            <form id="form-sala">
-                <!-- <select id="tipo-sala" required>
-                    <option value="" disabled selected>Unidade</option>
-                </select> -->
-                <input type="text" id="nome-sala" placeholder="Nome da Sala" required>
-                <input type="number" id="capacidade-sala" placeholder="Capacidade" required>
-                <select id="tipo-sala" required>
-                    <option value="" disabled selected>Tipo (privada, compartilhada...)</option>
-                    <option value="">Privada</option>
-                    <option value="">Compartilhada</option>
-                </select>
-                <button type="submit">Adicionar Sala</button>
-            </form>
+            <div id="hidden">
+                <h3>Salas Cadastradas</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Capacidade</th>
+                            <th>Tipo</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-salas"></tbody>
+                </table>
+
+                <h3>Criar Sala</h3>
+                
+                <form id="form-sala">
+                    <!-- <select id="tipo-sala" required>
+                        <option value="" disabled selected>Unidade</option>
+                    </select> -->
+                    <input type="text" id="nome-sala" placeholder="Nome da Sala" required>
+                    <input type="number" id="capacidade-sala" placeholder="Capacidade" required>
+                    <select id="tipo-sala" required>
+                        <option value="" disabled selected>Tipo (privada, compartilhada...)</option>
+                        <option value="">Privada</option>
+                        <option value="">Compartilhada</option>
+                    </select>
+                    <button type="submit">Adicionar Sala</button>
+                </form>
+            </div>
         </section>
 
         <!-- modal editar unidade -->
@@ -108,6 +110,27 @@
                 <form id="form-deletar-unidade">
                     <button type="submit" id="confirmar-exclusao-unidade">Sim, Excluir</button>
                     <button type="button" class="btn-cancelar">Cancelar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- modal editar sala -->
+        <div id="modal-editar-sala" class="modal">
+            <div class="modal-conteudo">
+                <span class="fechar-modal-editar-sala">&times;</span>
+                <h2>Editar Sala</h2>
+                <form id="form-editar-sala">
+                    <input type="hidden" id="editar-id-unidade">
+                    <input type="hidden" id="editar-id-sala">
+                    <input type="text" disabled id="editar-nome-unidade" placeholder="Unidade" required>
+                    <input type="text" id="editar-nome-sala" placeholder="Nome da Sala" required>
+                    <input type="number" id="editar-capacidade-sala" placeholder="Capacidade" required>
+                    <select id="editar-tipo-sala" required>
+                        <option value="">Privada</option>
+                        <option value="">Compartilhada</option>
+                    </select>
+                    <button type="submit" onclick="updateSala()">Salvar Alterações</button>
+                    <button id="fechar-modal-editar-sala" type="button" class="btn-cancelar">Cancelar</button>
                 </form>
             </div>
         </div>

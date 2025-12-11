@@ -78,6 +78,12 @@ async function tryLogin(email, senha){
             notFound.style.display = "block"
             return;
         }
+        if (response.status === 401) {
+            console.error("Senha incorreta")
+            const wrongPassword = document.getElementById('senha-incorreta')
+            wrongPassword.style.display = "block"
+            return
+        }    
     
         throw new Error(`Erro: ${response.status}`);
     }

@@ -741,7 +741,17 @@ input[type="radio"] {
     display: none;
     margin: 12px 0px 0px 0px;
 }
-
+#senha-incorreta {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffdddd;
+    border-radius: 6px;
+    padding: 8px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    display: none;
+    margin: 12px 0px 0px 0px;
+}
 
 /* Tabela moderna com colunas ocupando a largura total */
 table {

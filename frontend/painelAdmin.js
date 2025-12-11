@@ -54,6 +54,7 @@ function setUnidades(unidades) {
 
 async function atualizarUnidades() {
     listaUnidades.innerHTML = "";
+    const select = document.getElementById("filtro-unidade");
     unidades = await getUnidades();
     console.log(unidades);
     unidades.forEach(unidade => {
@@ -71,6 +72,12 @@ async function atualizarUnidades() {
             </td>
         `;
         listaUnidades.appendChild(row);
+
+        const inputUnidade = document.getElementById('filtro-unidade');
+        const option = document.createElement('option');
+        option.value = unidade.id;
+        option.textContent = unidade.name + " - " + unidade.address;
+        inputUnidade.appendChild(option);
     });
 }
 
@@ -180,51 +187,87 @@ async function createUnidade(nome, endereco) {
 // ----------------------------
 const formSala = document.getElementById("form-sala");
 const listaSalas = document.getElementById("lista-salas");
+let unidadeSelecionada = "";
+let salas = [];
 
-function getSalas() {
-    return JSON.parse(localStorage.getItem("salas")) || [];
-}
+//atualiza unidade selecionada
+document.getElementById("filtro-unidade").addEventListener("change", (e) => {
+    unidadeSelecionada = e.target.value;
+    console.log("Unidade selecionada:", unidadeSelecionada);
+    atualizarTabelaSalas();
+});
 
-function setSalas(salas) {
-    localStorage.setItem("salas", JSON.stringify(salas));
-}
-
-function atualizarTabelaSalas() {
+async function atualizarTabelaSalas() {
     listaSalas.innerHTML = "";
-    const salas = getSalas();
+    if (!unidadeSelecionada) return;
+    const hiddenContent = document.getElementById("hidden");
+    hiddenContent.style.display = "block";
+    salas = await getSalas(unidadeSelecionada);
     salas.forEach((sala, index) => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-            <td>${sala.nome}</td>
-            <td>${sala.capacidade}</td>
-            <td>${sala.tipo}</td>
-            <td>R$ ${sala.meia}</td>
-            <td>R$ ${sala.dia}</td>
+            <td>${sala.name}</td>
+            <td>${sala.seats}</td>
+            <td>${sala.isShared? "Compartilhada" : "Privada"}</td>
             <td>
-                <button class="edit" onclick="editarSala(${index})">Editar</button>
-                <button class="remove" onclick="removerSala(${index})">Excluir</button>
+                <button title="Editar registro" class="btn btn-editar" onclick="editarSala('${sala.id}')">
+                    <img src="img/edit.svg">
+                </button>
+                <button title="Excluir registro" class="btn btn-excluir" onclick="removerSala('${sala.id}')">
+                    <img src="img/delete.svg">
+                </button>
             </td>
         `;
         listaSalas.appendChild(tr);
     });
 }
 
-function removerSala(index) {
-    const salas = getSalas();
-    salas.splice(index, 1);
-    setSalas(salas);
-    atualizarTabelaSalas();
+async function getSalas(unidadeId) {
+    const response = await fetch(`http://localhost:5174/room/list/`+unidadeId, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("token")}` 
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`Erro: ${response.status}`);
+    }
+
+    const formatedResponse = await response.json();
+    console.log('get realizado com sucesso:', formatedResponse)
+
+    return formatedResponse.data;
 }
 
-function editarSala(index) {
-    const salas = getSalas();
-    const sala = salas[index];
-    document.getElementById("nome-sala").value = sala.nome;
-    document.getElementById("capacidade-sala").value = sala.capacidade;
-    document.getElementById("tipo-sala").value = sala.tipo;
-    document.getElementById("valor-meia").value = sala.meia;
-    document.getElementById("valor-dia").value = sala.dia;
-    removerSala(index);
+async function removerSala(index) {
+    console.log("Remover sala de index:", id);
+
+    const response = await fetch(`http://localhost:5174/room/delete/`+id, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("token")}` 
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`Erro: ${response.status}`);
+    }
+
+    location.reload();
+}
+
+function editarSala(id) {
+    sala = salas.find(s => s.id === id);
+    console.log(sala);
+
+    const modalEditarSala = document.getElementById("modal-editar-sala");
+    modalEditarSala.style.display = "flex";
+    document.getElementById("editar-nome-sala").value = sala.name;
+    // document.getElementById("editar-endereco-unidade").value = unidade.address;
+    // document.getElementById("editar-id-unidade").value = unidade.id;
 }
 
 formSala.addEventListener("submit", e => {
