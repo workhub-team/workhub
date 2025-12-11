@@ -37,7 +37,7 @@ builder.Services.AddAuthentication("Bearer")
 builder.Services.AddAuthorization();
 
 // Add services to the container.
-var connectionString = "Server=localhost;Port=3306;Database=workhub;User=root;Password=;";
+var connectionString = "Server=localhost;Port=3306;Database=workhub;User=root;Password=;AllowZeroDateTime=True;ConvertZeroDateTime=True;";
 builder.Services.AddDbContext<WorkHubContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
 );

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkHub - Painel Administrativo</title>
+    <link rel="stylesheet" href="painelAdmin.css">
+</head>
+<body>
+    <header>
+        <h1>Painel Administrativo</h1>
+        <button class="btn-sair">Sair</button>
+    </header>
+
+    <main>
+        <!-- Gerenciar Unidades -->
+        <section class="card">
+            <h2>Gerenciar Unidades</h2>
+            <h3>Unidades Cadastradas</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Endereço</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-unidades">
+                    <tr>
+                        <td>Unidade Workhub Alameda</td>
+                        <td>Rua Alameda 194, São Paulo - SP</td>
+                        <td>
+                            <button title="Editar registro" class="btn btn-editar"><img src="img/edit.svg"></button>
+                            <button title="Excluir registro" class="btn btn-excluir"><img src="img/delete.svg"></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Criar Unidade</h3>
+            <form id="form-unidade">
+                <input type="text" id="nome-unidade" placeholder="Nome da Unidade" required>
+                <input type="text" id="endereco-unidade" placeholder="Endereço da Unidade" required>
+                <button type="submit">Adicionar Unidade</button>
+            </form>
+        </section>
+
+        <!-- Gerenciar Salas -->
+        <section class="card">
+            <h2>Gerenciar Salas</h2>
+            <form>
+                <select id="filtro-unidade">
+                    <option value="" disabled selected>Selecione uma Unidade</option>
+                </select>
+            </form>
+            <h3>Salas Cadastradas</h3>
+            
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Capacidade</th>
+                        <th>Tipo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-salas"></tbody>
+            </table>
+
+            <h3>Criar Sala</h3>
+            
+            <form id="form-sala">
+                <!-- <select id="tipo-sala" required>
+                    <option value="" disabled selected>Unidade</option>
+                </select> -->
+                <input type="text" id="nome-sala" placeholder="Nome da Sala" required>
+                <input type="number" id="capacidade-sala" placeholder="Capacidade" required>
+                <select id="tipo-sala" required>
+                    <option value="" disabled selected>Tipo (privada, compartilhada...)</option>
+                    <option value="">Privada</option>
+                    <option value="">Compartilhada</option>
+                </select>
+                <button type="submit">Adicionar Sala</button>
+            </form>
+        </section>
+
+        <!-- modal editar unidade -->
+        <div id="modal-editar-unidade" class="modal">
+            <div class="modal-conteudo">
+                <span class="fechar">&times;</span>
+                <h2>Editar Unidade</h2>
+                <form id="form-editar-unidade">
+                    <input type="text" id="editar-nome-unidade" placeholder="Nome da Unidade" required>
+                    <input type="text" id="editar-endereco-unidade" placeholder="Endereço da Unidade" required>
+                    <button type="submit">Salvar Alterações</button>
+                    <button type="button" class="btn-cancelar">Cancelar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- modal deletar unidade -->
+        <div id="modal-deletar-unidade" class="modal">
+            <div class="modal-conteudo">
+                <span class="fechar">&times;</span>
+                <h2>Confirmar Exclusão</h2>
+                <p>Tem certeza que deseja excluir esta unidade?</p>
+                <form id="form-deletar-unidade">
+                    <button type="submit" id="confirmar-exclusao-unidade">Sim, Excluir</button>
+                    <button type="button" class="btn-cancelar">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+   <script src="painelAdmin.js"></script>
+</body>
+</html>
