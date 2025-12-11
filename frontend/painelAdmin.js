@@ -100,24 +100,80 @@ async function editarUnidade(id) {
     modalEditarUnidade.style.display = "flex";
     document.getElementById("editar-nome-unidade").value = unidade.name;
     document.getElementById("editar-endereco-unidade").value = unidade.address;
+    document.getElementById("editar-id-unidade").value = unidade.id;
 }
+
+async function updateUnidade(e) {
+    const id = document.getElementById("editar-id-unidade").value.trim();
+    const nome = document.getElementById("editar-nome-unidade").value.trim();
+    const endereco = document.getElementById("editar-endereco-unidade").value.trim();
+    if (!nome || !endereco) return;
+    console.log(id, nome, endereco);
+
+    const response = await fetch(`http://localhost:5174/unity/update`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+            id: id,
+            name: nome,
+            address: endereco
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error(`Erro: ${response.status}`);
+    }
+
+    console.log(response);
+    location.reload();
+}
+
+
+const formUnidadeUpdate = document.getElementById('form-editar-unidade');
+formUnidadeUpdate.addEventListener('submit', (e) => {
+    e.preventDefault();
+});
+
+//fechar modal editar unidade
+document.getElementById("fechar-modal-editar-unidade").addEventListener("click", () => {
+    document.getElementById("modal-editar-unidade").style.display = "none";
+});
+
+
+// criar unidade
 
 formUnidade.addEventListener("submit", e => {
     e.preventDefault();
     const nome = document.getElementById("nome-unidade").value.trim();
-    if (!nome) return;
+    const endereco = document.getElementById("endereco-unidade").value.trim();
+    if (!nome || !endereco) return;
 
-    let unidades = getUnidades();
-    if (unidades.includes(nome)) {
-        alert("Essa unidade já existe!");
-        return;
+    createUnidade(nome, endereco);
+});
+
+async function createUnidade(nome, endereco) {
+    const response = await fetch(`http://localhost:5174/unity/create`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+            name: nome,
+            address: endereco
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error(`Erro: ${response.status}`);
     }
 
-    unidades.push(nome);
-    setUnidades(unidades);
-    formUnidade.reset();
-    atualizarUnidades();
-});
+    console.log(response);
+    location.reload();
+}
 
 // ----------------------------
 // SALAS
