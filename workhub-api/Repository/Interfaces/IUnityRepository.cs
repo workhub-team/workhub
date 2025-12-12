@@ -6,4 +6,5 @@ public interface IUnityRepository
     string CreateUnity(UnityDto unityDto);
     Unity UpdateUnity(UnityDto unityDto);
     void DeleteUnity(string id);
+    string GetUnityByRoomId(string roomId);
 }

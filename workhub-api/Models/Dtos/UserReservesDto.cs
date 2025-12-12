@@ -8,6 +8,9 @@ public class UserReservesDto
     [JsonPropertyName("reserve_period")]
     public string? ReservePeriod { get; set; }
 
+    [JsonPropertyName("unity_name")]
+    public string? UnityName { get; set; }
+
     [JsonPropertyName("room_name")]
     public string? RoomName { get; set; }
 

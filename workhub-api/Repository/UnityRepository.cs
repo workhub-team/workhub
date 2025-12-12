@@ -74,4 +74,21 @@ public class UnityRepository : IUnityRepository
         unity.DeletedAt = DateTime.UtcNow;
         _context.SaveChanges();
     }
+
+    public string GetUnityByRoomId(string roomId)
+    {
+        var room = _context.Rooms.FirstOrDefault(r => r.Id == roomId && r.DeletedAt == null);
+        if (room == null)
+        {
+            throw new Exception("Room not found");
+        }
+
+        var unity = _context.Unities.FirstOrDefault(u => u.Id == room.UnityId && u.DeletedAt == null);
+        if (unity == null)
+        {
+            throw new Exception("Unity not found");
+        }
+
+        return unity.Name+" - "+unity.Address;
+    }
 }

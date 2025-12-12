@@ -47,10 +47,11 @@ function renderTable(data) {
     data.forEach(reserve => {
         const row = document.createElement('tr');   
         row.innerHTML = `
-            <td>${new Date(reserve.reservedDay).toLocaleDateString('pt-BR')}</td>
-            <td>${reserve.reservedPeriod == "full"? "Dia Completo": capitalizar(reserve.reservedPeriod)}</td>
-            <td>${reserve.roomId}</td>
-            <td>${reserve.accessCode}</td>
+            <td>${new Date(reserve.reserve_date).toLocaleDateString('pt-BR')}</td>
+            <td>${reserve.reserve_period == "full"? "Dia Completo": capitalizar(reserve.reserve_period)}</td>
+            <td>${reserve.room_name}</td>
+            <td>${reserve.unity_name}</td>
+            <td>${reserve.access_code}</td>
         `;
         tableBody.appendChild(row);
     });

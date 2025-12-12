@@ -5,11 +5,13 @@ public class ReserveService : IReserveService
 {
     private readonly IReserveRepository _reserveRepository;
     private readonly IRoomRepository _roomRepository;
+    private readonly IUnityRepository _unityRepository;
 
-    public ReserveService(IReserveRepository reserveRepository, IRoomRepository roomRepository)
+    public ReserveService(IReserveRepository reserveRepository, IRoomRepository roomRepository, IUnityRepository unityRepository)
     {
         _reserveRepository = reserveRepository;
         _roomRepository = roomRepository;
+        _unityRepository = unityRepository;
     }
 
     public IActionResult CreateReserve(ReserveDto reserveDto)
@@ -110,24 +112,25 @@ public class ReserveService : IReserveService
     public DynamicResponse GetAllReservesByUserId(string userId)
     {
         var reserves = _reserveRepository.GetAllReservesByUserId(userId);
-        // List<UserReservesDto> reserveResponse = new List<UserReservesDto>();
+        List<UserReservesDto> reserveResponse = new List<UserReservesDto>();
 
-        // foreach (var reserve in reserves)
-        // {
-        //     reserveResponse.Add(new UserReservesDto
-        //     {
-        //         ReserveDate = reserve.ReservedDay,
-        //         ReservePeriod = reserve.ReservedPeriod,
-        //         RoomName = _roomRepository.GetRoomById(reserve.RoomId).Name,
-        //         AccessCode = reserve.AccessCode
-        //     });
-        // }
+        foreach (var reserve in reserves)
+        {
+            reserveResponse.Add(new UserReservesDto
+            {
+                ReserveDate = reserve.ReservedDay,
+                ReservePeriod = reserve.ReservedPeriod,
+                RoomName = _roomRepository.GetRoomById(reserve.RoomId).Name,
+                UnityName = _unityRepository.GetUnityByRoomId(reserve.RoomId),
+                AccessCode = reserve.AccessCode
+            });
+        }
 
         return new DynamicResponse
         {
             Message = "Reservas retornadas com sucesso.",
             StatusCode = 200,
-            Data = reserves.Cast<dynamic>().ToList()
+            Data = reserveResponse.Cast<dynamic>().ToList()
         };
     }
 }
