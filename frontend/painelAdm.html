@@ -78,8 +78,8 @@
                     <input type="number" id="capacidade-sala" placeholder="Capacidade" required>
                     <select id="tipo-sala" required>
                         <option value="" disabled selected>Tipo (privada, compartilhada...)</option>
-                        <option value="">Privada</option>
-                        <option value="">Compartilhada</option>
+                        <option value="false">Privada</option>
+                        <option value="true">Compartilhada</option>
                     </select>
                     <button type="submit">Adicionar Sala</button>
                 </form>
@@ -93,7 +93,9 @@
                 <h2>Editar Unidade</h2>
                 <form id="form-editar-unidade">
                     <input type="hidden" id="editar-id-unidade">
+                    <label for="editar-id-unidade">Nome da Unidade</label>
                     <input type="text" id="editar-nome-unidade" placeholder="Nome da Unidade" required>
+                    <label for="editar-nome-unidade">Endereço</label>    
                     <input type="text" id="editar-endereco-unidade" placeholder="Endereço da Unidade" required>
                     <button type="submit" onclick="updateUnidade()">Salvar Alterações</button>
                     <button id="fechar-modal-editar-unidade" type="button" class="btn-cancelar">Cancelar</button>
@@ -117,17 +119,24 @@
         <!-- modal editar sala -->
         <div id="modal-editar-sala" class="modal">
             <div class="modal-conteudo">
-                <span class="fechar-modal-editar-sala">&times;</span>
                 <h2>Editar Sala</h2>
                 <form id="form-editar-sala">
-                    <input type="hidden" id="editar-id-unidade">
-                    <input type="hidden" id="editar-id-sala">
-                    <input type="text" disabled id="editar-nome-unidade" placeholder="Unidade" required>
+                    <input hidden id="editar-id-unidade-sala">
+                    <input hidden id="editar-id-sala">
+
+                    <label for="editar-nome-unidade-sala">Unidade</label>
+                    <input type="text" disabled id="editar-nome-unidade-sala" placeholder="Unidade" required>
+                    
+                    <label for="editar-nome-sala">Nome da Sala</label>
                     <input type="text" id="editar-nome-sala" placeholder="Nome da Sala" required>
+
+                    <label for="editar-capacidade-sala">Capacidade</label>
                     <input type="number" id="editar-capacidade-sala" placeholder="Capacidade" required>
+
+                    <label for="editar-tipo-sala">Tipo de Sala</label>
                     <select id="editar-tipo-sala" required>
-                        <option value="">Privada</option>
-                        <option value="">Compartilhada</option>
+                        <option value="false">Privada</option>
+                        <option value="true">Compartilhada</option>
                     </select>
                     <button type="submit" onclick="updateSala()">Salvar Alterações</button>
                     <button id="fechar-modal-editar-sala" type="button" class="btn-cancelar">Cancelar</button>

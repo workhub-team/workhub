@@ -188,12 +188,14 @@ async function createUnidade(nome, endereco) {
 const formSala = document.getElementById("form-sala");
 const listaSalas = document.getElementById("lista-salas");
 let unidadeSelecionada = "";
+let unidadeSelecionadaNome = "";
 let salas = [];
 
 //atualiza unidade selecionada
 document.getElementById("filtro-unidade").addEventListener("change", (e) => {
     unidadeSelecionada = e.target.value;
-    console.log("Unidade selecionada:", unidadeSelecionada);
+    unidadeSelecionadaNome = e.target.options[e.target.selectedIndex].text;
+    console.log("Unidade selecionada:", unidadeSelecionadaNome, unidadeSelecionada);
     atualizarTabelaSalas();
 });
 
@@ -259,32 +261,121 @@ async function removerSala(index) {
     location.reload();
 }
 
+//editar
 function editarSala(id) {
     sala = salas.find(s => s.id === id);
     console.log(sala);
 
     const modalEditarSala = document.getElementById("modal-editar-sala");
     modalEditarSala.style.display = "flex";
+    document.getElementById("editar-id-unidade-sala").value = unidadeSelecionada;
+    document.getElementById("editar-id-sala").value = sala.id;
+    document.getElementById("editar-nome-unidade-sala").value = unidadeSelecionadaNome;
     document.getElementById("editar-nome-sala").value = sala.name;
-    // document.getElementById("editar-endereco-unidade").value = unidade.address;
-    // document.getElementById("editar-id-unidade").value = unidade.id;
+    document.getElementById("editar-capacidade-sala").value = sala.seats;
+    
+    if (sala.isShared) {
+        document.getElementById("editar-tipo-sala").value = "true";
+    } else {
+        document.getElementById("editar-tipo-sala").value = "false";
+    }
 }
 
+async function updateSala(e) {
+    const idUnidade = document.getElementById("editar-id-unidade-sala").value.trim();
+    const idSala = document.getElementById("editar-id-sala").value.trim();
+    const nome = document.getElementById("editar-nome-sala").value.trim();
+    const capacidade = document.getElementById("editar-capacidade-sala").value.trim();
+    const compartilhada = document.getElementById("editar-tipo-sala").value.trim() === "true";
+
+    if (!idUnidade || !idSala || !nome || !capacidade) return;
+    console.log(idUnidade, idSala, nome, capacidade, compartilhada);
+
+    const response = await fetch(`http://localhost:5174/room/update`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+            unity_id: idUnidade,
+            room_id: idSala,
+            name: nome,
+            seats: parseInt(capacidade),
+            is_shared: compartilhada
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error(`Erro: ${response.status}`);
+    }
+
+    console.log(response);
+
+    document.getElementById("modal-editar-sala").style.display = "none";
+    atualizarTabelaSalas();
+}
+
+//fechar modal editar unidade
+document.getElementById("fechar-modal-editar-sala").addEventListener("click", () => {
+    document.getElementById("modal-editar-sala").style.display = "none";
+});
+
+// criar sala
 formSala.addEventListener("submit", e => {
     e.preventDefault();
-    const sala = {
-        nome: document.getElementById("nome-sala").value,
-        capacidade: document.getElementById("capacidade-sala").value,
-        tipo: document.getElementById("tipo-sala").value,
-        meia: document.getElementById("valor-meia").value,
-        dia: document.getElementById("valor-dia").value,
-    };
-    const salas = getSalas();
-    salas.push(sala);
-    setSalas(salas);
+
+    const nome = document.getElementById("nome-sala").value.trim();
+    const capacidade = document.getElementById("capacidade-sala").value.trim();
+    const compartilhada = document.getElementById("tipo-sala").value.trim() === "true";
+
+    console.log("Criar sala na unidade:", nome, capacidade, compartilhada, unidadeSelecionada);  
+    if (!nome || !capacidade) return;
+
+    createSala(nome, capacidade, compartilhada, unidadeSelecionada);
+});
+
+async function createSala(nome, capacidade, compartilhada, unidadeSelecionada) {
+    const response = await fetch(`http://localhost:5174/room/create`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+            unity_id: unidadeSelecionada,
+            name: nome,
+            seats: parseInt(capacidade),
+            is_shared: compartilhada
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error(`Erro: ${response.status}`);
+    }
+
     formSala.reset();
     atualizarTabelaSalas();
-});
+}
+
+// deletar 
+async function removerSala(id) {
+    console.log("Remover sala de index:", id);
+
+    const response = await fetch(`http://localhost:5174/room/delete/`+id, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("token")}` 
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`Erro: ${response.status}`);
+    }
+
+    atualizarTabelaSalas();
+}
 
 // ----------------------------
 // INICIALIZAÇÃO
