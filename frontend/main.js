@@ -8,6 +8,12 @@ function checkToken(){
         if (tokenValidate(token)) {
             console.log("User is logged in.");
             hideLogin();
+
+            const userRole = localStorage.getItem("userRole");
+            if (userRole === "admin") {
+                const adminMenu = document.getElementById("admin");
+                adminMenu.style.display = "block";
+            }
         }
         else {
             localStorage.removeItem("token");

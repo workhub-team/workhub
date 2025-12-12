@@ -856,3 +856,7 @@ thead th:last-child,  tbody td:last-child  { padding-right: 18px; }
     border-radius: 10px;
     text-align: center;
 }
+
+#admin {
+    display: none;
+}
